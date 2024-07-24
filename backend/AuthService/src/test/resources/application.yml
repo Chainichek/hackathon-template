@@ -1,0 +1,13 @@
+spring:
+  application:
+    name: AuthService
+  jpa:
+    hibernate:
+      ddl-auto: none
+  liquibase:
+    change-log: classpath:db/changelog/db.changelog-main.xml
+
+security:
+  token:
+    secret: secret
+    expire: 10000000
