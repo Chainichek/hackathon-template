@@ -1,0 +1,22 @@
+spring:
+  application:
+    name: AuthService
+  jpa:
+    hibernate:
+      ddl-auto: validate
+  liquibase:
+    change-log: classpath:db/changelog/db.changelog-main.xml
+  datasource:
+    username: admin
+    password: admin
+    url: jdbc:postgresql://localhost:9999/test_db
+    driver-class-name: org.postgresql.Driver
+
+security:
+  token:
+    secret: secret
+    expire: 10000000
+
+server:
+  servlet:
+    context-path: /api
