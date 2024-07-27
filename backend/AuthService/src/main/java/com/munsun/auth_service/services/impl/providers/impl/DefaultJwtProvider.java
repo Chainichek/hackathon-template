@@ -2,7 +2,8 @@ package com.munsun.auth_service.services.impl.providers.impl;
 
 import com.auth0.jwt.JWT;
 import com.auth0.jwt.algorithms.Algorithm;
-import com.munsun.auth_service.models.User;
+import com.munsun.auth_service.dto.response.JwtTokenDto;
+import com.munsun.auth_service.models.Account;
 import com.munsun.auth_service.services.impl.providers.JwtProvider;
 import jakarta.annotation.PostConstruct;
 import lombok.Getter;
@@ -31,13 +32,17 @@ public class DefaultJwtProvider implements JwtProvider {
     }
 
     @Override
-    public String generate(User user) {
+    public JwtTokenDto getJwtTokenDto(Account account) {
         Date now = new Date();
+        return new JwtTokenDto(generate(account, now), new Date(now.getTime()+expire).toString());
+    }
+
+    @Override
+    public String generate(Account account, Date now) {
         return JWT.create()
                 .withIssuer(issuerName)
-                .withClaim("userId", user.getUserId().toString())
-                .withClaim("login", user.getAccount().getLogin())
-                .withClaim("role", user.getAccount().getRole().name())
+                .withClaim("login", account.getLogin())
+                .withClaim("role", account.getRole().name())
                 .withIssuedAt(now)
                 .withExpiresAt(new Date(now.getTime()+expire))
                 .sign(algorithm);

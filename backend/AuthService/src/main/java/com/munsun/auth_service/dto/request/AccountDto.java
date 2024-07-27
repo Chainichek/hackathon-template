@@ -3,7 +3,7 @@ package com.munsun.auth_service.dto.request;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
 
-public record LoginPasswordDto(
+public record AccountDto(
         @NotBlank
         String login,
 
