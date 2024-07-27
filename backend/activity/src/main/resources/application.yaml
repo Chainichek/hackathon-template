@@ -1,0 +1,15 @@
+spring:
+  application:
+    name: activity
+  jpa:
+    hibernate:
+      ddl-auto: validate
+    properties:
+      hibernate:
+        default_schema: activity
+  liquibase:
+    enabled: true
+    change-log: db/changelog/changelog.xml
+springdoc:
+  swagger-ui:
+    path: /swagger-docs
