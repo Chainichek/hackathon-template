@@ -2,6 +2,7 @@ package ru.chainichek.hackathon.template.activity.api;
 
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -15,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import ru.chainichek.hackathon.template.activity.dto.activity.ActivityRegistrationRequestDto;
 
 import java.time.LocalDateTime;
+import java.util.List;
 import java.util.UUID;
 
 @RequestMapping("v1/activity")
@@ -37,4 +39,8 @@ public interface ActivityApi {
 
     @DeleteMapping("/{activityId}")
     ResponseEntity<?> delete(@PathVariable("activityId") UUID activityId);
+
+    @PostMapping("/{activityId}/invite")
+    ResponseEntity<?> invite(@PathVariable("activityId") UUID activityId,
+                             @RequestBody @NotEmpty @Valid List<String> logins);
 }
