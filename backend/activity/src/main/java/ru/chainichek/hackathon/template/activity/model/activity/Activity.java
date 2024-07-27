@@ -48,7 +48,7 @@ public class Activity {
     @Column(nullable = false)
     private String author;
 
-    @OneToMany(mappedBy = "activity")
+    @OneToMany(mappedBy = "activity", orphanRemoval = true)
     private Set<ActivityEmployee> employees;
 
     @Column(nullable = false)
