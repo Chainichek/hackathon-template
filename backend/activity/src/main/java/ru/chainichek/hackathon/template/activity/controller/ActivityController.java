@@ -1,7 +1,6 @@
 package ru.chainichek.hackathon.template.activity.controller;
 
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
@@ -19,12 +18,9 @@ import java.util.UUID;
 public class ActivityController implements ActivityApi {
     private final ActivityService activityService;
 
-    @Value("${app.mvc.context-path}")
-    private String baseContext;
-
     @Override
     public ResponseEntity<?> find(UUID activityId) {
-        return ResponseEntity.ok(activityService.findById(activityId));
+        return ResponseEntity.ok(activityService.find(activityId));
     }
 
     @Override

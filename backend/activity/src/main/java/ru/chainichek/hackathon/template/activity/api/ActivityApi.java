@@ -73,7 +73,7 @@ public interface ActivityApi {
     ResponseEntity<?> find(@PathVariable("activityId") UUID activityId);
 
     @GetMapping("")
-    ResponseEntity<?> findByLogin(@RequestParam("login") String login,
+    ResponseEntity<?> findByLogin(@RequestParam("login") @NotBlank @Valid String login,
                                   @RequestParam(value = "startAt", required = false) LocalDateTime startAt,
                                   @RequestParam(value = "endAt", required = false) LocalDateTime endAt);
 
@@ -84,7 +84,7 @@ public interface ActivityApi {
     @PatchMapping("/{activityId}")
     ResponseEntity<?> update(@PathVariable("activityId") UUID activityId,
                              @RequestParam("author") @NotBlank @Valid String author,
-                             @RequestParam("role") @NotNull @Valid Role role,
+                             @RequestParam("role") @NotBlank @Valid Role role,
                              @RequestBody @NotNull @Valid ActivityRegistrationRequestDto request);
 
     @DeleteMapping("/{activityId}")

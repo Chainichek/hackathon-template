@@ -25,9 +25,13 @@ public class ActivityService {
     private final ActivityRepo activityRepo;
     private final ActivityMapper activityMapper;
 
-    public ActivityDto findById(@NonNull UUID id) {
-        return activityMapper.mapToActivityDto(activityRepo.findById(id)
-                .orElseThrow(() -> new NotFoundException(ExceptionMessage.ACTIVITY_NOT_FOUND_EXCEPTION_MESSAGE, id.toString())));
+    public Activity findById(@NonNull UUID id) {
+        return activityRepo.findById(id)
+                .orElseThrow(() -> new NotFoundException(ExceptionMessage.ACTIVITY_NOT_FOUND_EXCEPTION_MESSAGE, id.toString()));
+    }
+
+    public ActivityDto find(@NonNull UUID id) {
+        return activityMapper.mapToActivityDto(findById(id));
     }
 
     public List<ActivityDto> findAllByLogin(@NonNull String login,
@@ -55,11 +59,10 @@ public class ActivityService {
 
     @Transactional
     public void update(@NonNull UUID id,
-                              @NonNull ActivityRegistrationRequestDto request,
-                              @NonNull String author,
-                              @NonNull Role role) {
-        final Activity activity = activityRepo.findById(id)
-                .orElseThrow(() -> new NotFoundException(ExceptionMessage.ACTIVITY_NOT_FOUND_EXCEPTION_MESSAGE, id.toString()));
+                       @NonNull ActivityRegistrationRequestDto request,
+                       @NonNull String author,
+                       @NonNull Role role) {
+        final Activity activity = findById(id);
         if (!activity.getAuthor().equals(author) || role != Role.ADMIN) {
             throw new ForbiddenException(ExceptionMessage.NO_ACCESS_EXCEPTION_MESSAGE);
         }
@@ -70,8 +73,7 @@ public class ActivityService {
     public void delete(@NonNull UUID id,
                        @NonNull String author,
                        @NonNull Role role) {
-        final Activity activity = activityRepo.findById(id)
-                .orElseThrow(() -> new NotFoundException(ExceptionMessage.ACTIVITY_NOT_FOUND_EXCEPTION_MESSAGE, id.toString()));
+        final Activity activity = findById(id);
         if (!activity.getAuthor().equals(author) || role != Role.ADMIN) {
             throw new ForbiddenException(ExceptionMessage.NO_ACCESS_EXCEPTION_MESSAGE);
         }
