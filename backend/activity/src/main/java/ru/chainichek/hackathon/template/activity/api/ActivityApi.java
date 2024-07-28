@@ -28,7 +28,7 @@ import ru.chainichek.hackathon.template.activity.model.user.Role;
 import java.time.LocalDateTime;
 import java.util.UUID;
 
-@RequestMapping("${app.mvc.context-path}/activity")
+@RequestMapping("${app.mvc.context-path}/activities")
 public interface ActivityApi {
     @Operation(
             summary = "Calculation of possible loan terms",
