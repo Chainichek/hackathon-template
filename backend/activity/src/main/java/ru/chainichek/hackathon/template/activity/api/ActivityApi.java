@@ -163,7 +163,7 @@ public interface ActivityApi {
             value = {
                     @ApiResponse(
                             responseCode = "204",
-                            description = "Successful activity creation",
+                            description = "Successful activity update",
                             content = @Content(
                                     mediaType = MediaType.APPLICATION_JSON_VALUE,
                                     schema = @Schema()
