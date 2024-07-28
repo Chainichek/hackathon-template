@@ -69,6 +69,23 @@ public class ExceptionHandlerControllerAdvice {
                 .body(message);
     }
 
+    //404
+    @ExceptionHandler(IllegalArgumentException.class)
+    public ResponseEntity<ErrorMessage> illegalArgumentException(IllegalArgumentException exception,
+                                                          HttpServletRequest request) {
+        final ErrorMessage message = new ErrorMessage(LocalDateTime.now(),
+                HttpStatus.BAD_REQUEST.getReasonPhrase(),
+                HttpStatus.BAD_REQUEST.value(),
+                exception.getMessage(),
+                request.getRequestURI());
+
+        log.error(exception.getMessage(), exception);
+
+        return ResponseEntity
+                .status(HttpStatus.BAD_REQUEST)
+                .body(message);
+    }
+
     @ExceptionHandler(ForbiddenException.class)
     public ResponseEntity<ErrorMessage> forbiddenException(ForbiddenException exception,
                                                            HttpServletRequest request) {
