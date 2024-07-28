@@ -1,8 +1,8 @@
 package com.munsun.auth_service.advice;
 
 import com.munsun.auth_service.dto.response.ErrorMessageDto;
-import com.munsun.auth_service.exceptions.SaveUserException;
-import com.munsun.auth_service.exceptions.UserNotFoundException;
+import com.munsun.auth_service.exceptions.AccountNotFoundException;
+import com.munsun.auth_service.exceptions.SaveAccountException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.MethodArgumentNotValidException;
@@ -23,17 +23,17 @@ public class AuthControllerAdvice {
                 .body(new ErrorMessageDto(message));
     }
 
-    @ExceptionHandler(UserNotFoundException.class)
-    public ResponseEntity<ErrorMessageDto> handleUserNotFoundException(Exception e) {
+    @ExceptionHandler(AccountNotFoundException.class)
+    public ResponseEntity<ErrorMessageDto> handleAccountNotFoundException(Exception e) {
         return ResponseEntity
                 .status(HttpStatus.NOT_FOUND)
                 .body(new ErrorMessageDto(e.getMessage()));
     }
 
-    @ExceptionHandler(SaveUserException.class)
-    public ResponseEntity<ErrorMessageDto> handleSaveUserException(Exception e) {
+    @ExceptionHandler(SaveAccountException.class)
+    public ResponseEntity<ErrorMessageDto> handleSaveAccountException(Exception e) {
         return ResponseEntity
-                .status(HttpStatus.BAD_REQUEST)
+                .status(HttpStatus.INTERNAL_SERVER_ERROR)
                 .body(new ErrorMessageDto(e.getMessage()));
     }
 }

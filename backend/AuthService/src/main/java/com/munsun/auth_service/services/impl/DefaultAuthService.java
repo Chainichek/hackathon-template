@@ -1,13 +1,14 @@
 package com.munsun.auth_service.services.impl;
 
-import com.munsun.auth_service.dto.request.LoginPasswordDto;
-import com.munsun.auth_service.dto.request.UserInfoDto;
+import com.munsun.auth_service.dto.request.AccountDto;
+import com.munsun.auth_service.dto.response.AccountPersistentDto;
 import com.munsun.auth_service.dto.response.JwtTokenDto;
-import com.munsun.auth_service.exceptions.SaveUserException;
-import com.munsun.auth_service.exceptions.UserNotFoundException;
-import com.munsun.auth_service.mapping.UserMapper;
-import com.munsun.auth_service.models.User;
-import com.munsun.auth_service.repositories.UserRepository;
+import com.munsun.auth_service.exceptions.AccountNotFoundException;
+import com.munsun.auth_service.exceptions.SaveAccountException;
+import com.munsun.auth_service.mapping.AccountMapper;
+import com.munsun.auth_service.models.Account;
+import com.munsun.auth_service.models.enums.Role;
+import com.munsun.auth_service.repositories.AccountRepository;
 import com.munsun.auth_service.services.AuthService;
 import com.munsun.auth_service.services.impl.providers.JwtProvider;
 import lombok.RequiredArgsConstructor;
@@ -18,25 +19,28 @@ import java.util.Optional;
 @Service
 @RequiredArgsConstructor
 public class DefaultAuthService implements AuthService {
-    private final UserRepository userRepository;
+    private final AccountRepository accountResository;
     private final JwtProvider jwtProvider;
-    private final UserMapper userMapper;
+    private final AccountMapper accountMapper;
 
     @Override
-    public JwtTokenDto auth(LoginPasswordDto loginPassword) {
-        Optional<User> user = userRepository.findByAccount_Login(loginPassword.login());
+    public JwtTokenDto auth(AccountDto loginPassword) {
+        Optional<Account> user = accountResository.findAccountByLogin(loginPassword.login());
         if(user.isEmpty()) {
-            throw new UserNotFoundException("Invalid login or password");
+            throw new AccountNotFoundException("Invalid login or password");
         }
-        return new JwtTokenDto(jwtProvider.generate(user.get()));
+        return jwtProvider.getJwtTokenDto(user.get());
     }
 
     @Override
-    public void register(UserInfoDto userInfo) {
-        if(userRepository.existsByEmailOrAccount_LoginOrPhoneNumber(userInfo.email(), userInfo.login(), userInfo.phoneNumber())) {
-            throw new SaveUserException("User has already been created");
+    public AccountPersistentDto register(AccountDto accountDto) {
+        if(accountResository.existsByLogin(accountDto.login())) {
+            throw new SaveAccountException(String.format("Account with login=%s is already exists",
+                    accountDto.login()));
         }
-        User user = userMapper.map(userInfo);
-        userRepository.save(user);
+        Account account = accountMapper.map(accountDto);
+            account.setRole(Role.EMPLOYEE);
+        accountResository.save(account);
+        return accountMapper.map(account);
     }
 }
