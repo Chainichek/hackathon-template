@@ -1,10 +1,10 @@
 package ru.chainichek.hackathon.template.activity.service;
 
-import jakarta.transaction.Transactional;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import ru.chainichek.hackathon.template.activity.dto.activity.ActivityDto;
 import ru.chainichek.hackathon.template.activity.dto.activity.ActivityRegistrationRequestDto;
 import ru.chainichek.hackathon.template.activity.exception.ForbiddenException;
