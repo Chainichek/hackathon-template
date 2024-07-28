@@ -21,6 +21,13 @@ springdoc:
 app:
   mvc:
     context-path: /v1
+  client:
+    employee:
+      url: ${EMPLOYEE_SERVICE_HOST}
+      path:
+        base-path: /api/v1
+        find-employee: /employees
+        find-group: /groups/{groupId}
 server:
   servlet:
     context-path: /api

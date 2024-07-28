@@ -51,6 +51,7 @@ public class ActivityEmployee {
     @JoinColumn
     private Activity activity;
 
+    @Builder.Default
     @Column(nullable = false)
     @Enumerated(EnumType.STRING)
     private EmployeeStatus status = EmployeeStatus.UNCHECKED;

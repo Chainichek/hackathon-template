@@ -4,7 +4,6 @@ import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.MappingConstants;
 import org.mapstruct.MappingTarget;
-import org.mapstruct.Named;
 import ru.chainichek.hackathon.template.activity.dto.activity.ActivityDto;
 import ru.chainichek.hackathon.template.activity.dto.activity.ActivityRegistrationRequestDto;
 import ru.chainichek.hackathon.template.activity.model.activity.Activity;
@@ -15,8 +14,7 @@ import java.util.List;
 
 @Mapper(componentModel = MappingConstants.ComponentModel.SPRING)
 public interface ActivityMapper {
-    @Named("mapToLogins")
-    default List<String> mapToLogins(Collection<ActivityEmployee> employees) {
+    default List<String> map(Collection<ActivityEmployee> employees) {
         if (employees == null || employees.isEmpty()) {
             return null;
         }
@@ -25,15 +23,15 @@ public interface ActivityMapper {
                 .toList();
     }
 
-    @Mapping(target = "logins", source = "employees", qualifiedByName = "mapToLogins")
-    ActivityDto mapToActivityDto(Activity activity);
+    @Mapping(target = "logins", source = "employees")
+    ActivityDto map(Activity activity);
 
     @Mapping(target = "statusHistory", ignore = true)
     @Mapping(target = "status", ignore = true)
     @Mapping(target = "id", ignore = true)
     @Mapping(target = "employees", ignore = true)
     @Mapping(target = "createdAt", ignore = true)
-    Activity mapToActivity(ActivityRegistrationRequestDto request, String author);
+    Activity map(ActivityRegistrationRequestDto request, String author);
 
     @Mapping(target = "statusHistory", ignore = true)
     @Mapping(target = "status", ignore = true)
@@ -41,5 +39,5 @@ public interface ActivityMapper {
     @Mapping(target = "employees", ignore = true)
     @Mapping(target = "createdAt", ignore = true)
     @Mapping(target = "author", ignore = true)
-    Activity updateActivity(@MappingTarget Activity activity, ActivityRegistrationRequestDto request);
+    Activity map(@MappingTarget Activity activity, ActivityRegistrationRequestDto request);
 }

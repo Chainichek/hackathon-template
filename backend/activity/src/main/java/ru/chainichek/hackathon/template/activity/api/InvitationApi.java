@@ -5,7 +5,6 @@ import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -30,11 +29,11 @@ public interface InvitationApi {
                                   @RequestParam("role") @NotNull @Valid Role role,
                                   @RequestParam UUID groupId);
 
-    @PatchMapping("/{activityId}/accept")
-    ResponseEntity<?> acceptInvite(@PathVariable UUID activityId,
-                                   @RequestParam("login") @NotBlank String login);
+    @PostMapping("/{activityId}/accept")
+    ResponseEntity<?> accept(@PathVariable UUID activityId,
+                             @RequestParam("login") @NotBlank String login);
 
-    @PatchMapping("/{activityId}/deny")
-    ResponseEntity<?> denyInvite(@PathVariable UUID activityId,
-                                 @RequestParam("login") @NotBlank String login);
+    @PostMapping("/{activityId}/deny")
+    ResponseEntity<?> deny(@PathVariable UUID activityId,
+                           @RequestParam("login") @NotBlank String login);
 }

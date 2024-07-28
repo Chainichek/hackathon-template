@@ -31,7 +31,7 @@ public class ActivityService {
     }
 
     public ActivityDto find(@NonNull UUID id) {
-        return activityMapper.mapToActivityDto(findById(id));
+        return activityMapper.map(findById(id));
     }
 
     public List<ActivityDto> findAllByLogin(@NonNull String login,
@@ -43,16 +43,16 @@ public class ActivityService {
 
         return activityRepo.findByEmployeeLoginAndDateRange(login, startAt, endAt)
                 .stream()
-                .map(activityMapper::mapToActivityDto)
+                .map(activityMapper::map)
                 .toList();
     }
 
     @Transactional
     public ActivityDto create(@NonNull ActivityRegistrationRequestDto request,
                               @NonNull String author) {
-        return activityMapper.mapToActivityDto(
+        return activityMapper.map(
                 activityRepo.save(
-                        activityMapper.mapToActivity(request, author)
+                        activityMapper.map(request, author)
                 )
         );
     }
@@ -66,7 +66,7 @@ public class ActivityService {
         if (!activity.getAuthor().equals(author) || role != Role.ADMIN) {
             throw new ForbiddenException(ExceptionMessage.NO_ACCESS_EXCEPTION_MESSAGE);
         }
-        activityRepo.save(activityMapper.updateActivity(activity, request));
+        activityRepo.save(activityMapper.map(activity, request));
     }
 
     @Transactional
