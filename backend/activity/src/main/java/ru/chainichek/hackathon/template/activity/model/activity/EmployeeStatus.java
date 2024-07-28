@@ -1,4 +1,4 @@
-package ru.chainichek.hackathon.template.activity.model;
+package ru.chainichek.hackathon.template.activity.model.activity;
 
 public enum EmployeeStatus {
     UNCHECKED,

@@ -7,7 +7,9 @@ import lombok.extern.slf4j.Slf4j;
 import ru.chainichek.hackathon.template.activity.annotation.IsDateAfterOtherDate;
 
 import java.lang.reflect.Method;
-import java.time.chrono.ChronoLocalDate;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.temporal.Temporal;
 
 @Slf4j
 public class DateAfterOtherDateValidator implements ConstraintValidator<IsDateAfterOtherDate, Object> {
@@ -31,16 +33,20 @@ public class DateAfterOtherDateValidator implements ConstraintValidator<IsDateAf
         final Method startMethod = o.getClass().getMethod(this.getStartAtMethodName);
         final Method endMethod = o.getClass().getMethod(this.getEndAtMethodName);
 
-        ChronoLocalDate startAt = (ChronoLocalDate) startMethod.invoke(o);
-        ChronoLocalDate endAt = (ChronoLocalDate) endMethod.invoke(o);
+        final Temporal startAtTemporal = (Temporal) startMethod.invoke(o);
+        final Temporal endAtTemporal = (Temporal) endMethod.invoke(o);
 
-        log.debug("Validating dates: startAt = {}, endAt = {}", startAt, endAt);
+        log.debug("Validating dates: startAt = {}, endAt = {}", startAtTemporal, endAtTemporal);
 
-        if (startAt == null || endAt == null) {
+        if (startAtTemporal == null || endAtTemporal == null) {
             return true;
         }
 
-        return startAt.isAfter(endAt);
+        final LocalDateTime startAtDateTime = startAtTemporal instanceof LocalDate ? ((LocalDate) startAtTemporal).atStartOfDay() : (LocalDateTime) startAtTemporal;
+        final LocalDateTime endAtDateTime = endAtTemporal instanceof LocalDate ? ((LocalDate) endAtTemporal).atStartOfDay() : (LocalDateTime) endAtTemporal;
+
+
+        return startAtDateTime.isBefore(endAtDateTime);
     }
 
 }

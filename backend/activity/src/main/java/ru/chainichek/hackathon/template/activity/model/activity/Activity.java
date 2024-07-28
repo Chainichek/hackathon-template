@@ -1,4 +1,4 @@
-package ru.chainichek.hackathon.template.activity.model;
+package ru.chainichek.hackathon.template.activity.model.activity;
 
 import io.hypersistence.utils.hibernate.type.json.JsonType;
 import jakarta.persistence.Column;
@@ -51,16 +51,24 @@ public class Activity {
     @OneToMany(mappedBy = "activity", orphanRemoval = true)
     private Set<ActivityEmployee> employees;
 
+    @Builder.Default
     @Column(nullable = false)
     @Enumerated(EnumType.STRING)
-    private ActivityStatus status;
+    private ActivityStatus status = ActivityStatus.CREATED;
 
+    @Builder.Default
     @Type(JsonType.class)
-    private List<ActivityStatusHistoryDto> statusHistory;
+    private List<ActivityStatusHistoryDto> statusHistory = List.of(new ActivityStatusHistoryDto(ActivityStatus.CREATED));
 
     private LocalDateTime startAt;
     private LocalDateTime endAt;
 
+    @Builder.Default
     @Column(nullable = false)
     private LocalDateTime createdAt = LocalDateTime.now();
+
+    void setActivityStatus(ActivityStatus status) {
+        this.status = status;
+        statusHistory.add(new ActivityStatusHistoryDto(status));
+    }
 }

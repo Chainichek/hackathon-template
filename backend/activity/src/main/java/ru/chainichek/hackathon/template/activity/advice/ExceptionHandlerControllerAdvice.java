@@ -6,6 +6,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.http.converter.HttpMessageNotReadableException;
 import org.springframework.validation.FieldError;
+import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 import org.springframework.web.method.annotation.HandlerMethodValidationException;
@@ -40,12 +41,17 @@ public class ExceptionHandlerControllerAdvice {
                                                                          HttpServletRequest request) {
         final List<String> errors = exception.getAllValidationResults().stream()
                 .flatMap(result -> result.getResolvableErrors().stream())
-                .filter(messageError -> messageError instanceof FieldError)
-                .map(messageError -> (FieldError) messageError)
-                .map(fieldError -> "%s = %s: %s".formatted(
-                        fieldError.getField(),
-                        fieldError.getRejectedValue(),
-                        fieldError.getDefaultMessage()))
+                .filter(messageError -> messageError instanceof ObjectError)
+                .map(messageError -> {
+                    if (messageError instanceof FieldError fieldError) {
+                        return "%s = %s: %s".formatted(
+                                fieldError.getField(),
+                                fieldError.getRejectedValue(),
+                                fieldError.getDefaultMessage());
+                    }
+
+                    return messageError.getDefaultMessage();
+                })
                 .toList();
 
         final ErrorMessage message = new ErrorMessage(LocalDateTime.now(),
