@@ -72,6 +72,12 @@ public class ActivityService {
     }
 
     @Transactional
+    public void updateStatus(@NonNull Activity activity, @NonNull ActivityStatus status) {
+        activity.setStatus(status);
+        activityRepo.save(activity);
+    }
+
+    @Transactional
     public void delete(@NonNull UUID id,
                        @NonNull String author,
                        @NonNull Role role) {

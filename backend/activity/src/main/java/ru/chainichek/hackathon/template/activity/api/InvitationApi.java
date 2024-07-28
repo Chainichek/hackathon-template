@@ -69,6 +69,14 @@ public interface InvitationApi {
                             )
                     ),
                     @ApiResponse(
+                            responseCode = "412",
+                            description = "Invite was already confirmed",
+                            content = @Content(
+                                    mediaType = MediaType.APPLICATION_JSON_VALUE,
+                                    schema = @Schema(implementation = ErrorMessage.class)
+                            )
+                    ),
+                    @ApiResponse(
                             responseCode = "500",
                             description = "Internal server error",
                             content = @Content(
@@ -123,6 +131,14 @@ public interface InvitationApi {
                             )
                     ),
                     @ApiResponse(
+                            responseCode = "412",
+                            description = "Invite was already confirmed",
+                            content = @Content(
+                                    mediaType = MediaType.APPLICATION_JSON_VALUE,
+                                    schema = @Schema(implementation = ErrorMessage.class)
+                            )
+                    ),
+                    @ApiResponse(
                             responseCode = "500",
                             description = "Internal server error",
                             content = @Content(
@@ -169,6 +185,14 @@ public interface InvitationApi {
                             )
                     ),
                     @ApiResponse(
+                            responseCode = "412",
+                            description = "Invite was already confirmed",
+                            content = @Content(
+                                    mediaType = MediaType.APPLICATION_JSON_VALUE,
+                                    schema = @Schema(implementation = ErrorMessage.class)
+                            )
+                    ),
+                    @ApiResponse(
                             responseCode = "500",
                             description = "Internal server error",
                             content = @Content(
@@ -207,6 +231,14 @@ public interface InvitationApi {
                     @ApiResponse(
                             responseCode = "404",
                             description = "Invite was not found",
+                            content = @Content(
+                                    mediaType = MediaType.APPLICATION_JSON_VALUE,
+                                    schema = @Schema(implementation = ErrorMessage.class)
+                            )
+                    ),
+                    @ApiResponse(
+                            responseCode = "412",
+                            description = "Invite was already confirmed",
                             content = @Content(
                                     mediaType = MediaType.APPLICATION_JSON_VALUE,
                                     schema = @Schema(implementation = ErrorMessage.class)

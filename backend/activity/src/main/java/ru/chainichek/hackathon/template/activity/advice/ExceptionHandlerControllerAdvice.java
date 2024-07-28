@@ -14,6 +14,7 @@ import ru.chainichek.hackathon.template.activity.dto.util.ErrorMessage;
 import ru.chainichek.hackathon.template.activity.dto.util.InternalErrorMessage;
 import ru.chainichek.hackathon.template.activity.exception.ForbiddenException;
 import ru.chainichek.hackathon.template.activity.exception.NotFoundException;
+import ru.chainichek.hackathon.template.activity.exception.WrongStatusException;
 
 import java.time.LocalDateTime;
 import java.util.Arrays;
@@ -116,6 +117,23 @@ public class ExceptionHandlerControllerAdvice {
 
         return ResponseEntity
                 .status(HttpStatus.NOT_FOUND)
+                .body(message);
+    }
+
+    //412
+    @ExceptionHandler(WrongStatusException.class)
+    public ResponseEntity<ErrorMessage> wrongStatusException(WrongStatusException exception,
+                                                             HttpServletRequest request) {
+        final ErrorMessage message = new ErrorMessage(LocalDateTime.now(),
+                HttpStatus.PRECONDITION_FAILED.getReasonPhrase(),
+                HttpStatus.PRECONDITION_FAILED.value(),
+                exception.getMessage(),
+                request.getRequestURI());
+
+        log.error(exception.getMessage(), exception);
+
+        return ResponseEntity
+                .status(HttpStatus.PRECONDITION_FAILED)
                 .body(message);
     }
 
