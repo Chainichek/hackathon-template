@@ -1,0 +1,45 @@
+spring:
+  application:
+    name: activity
+  jpa:
+    hibernate:
+      ddl-auto: validate
+    properties:
+      hibernate:
+        default_schema: activity
+  liquibase:
+    enabled: true
+    change-log: db/changelog/changelog.xml
+  jackson:
+    date-format: com.fasterxml.jackson.databind.util.StdDateFormat
+  kafka:
+    bootstrap-servers: ${SPRING_KAFKA_BOOTSTRAP_SERVERS:localhost:9092}
+    producer:
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
+      properties:
+        spring.json.value.default.type: ru.chainichek.hackathon.template.activity.dto.notification.NotificationMessage
+        spring.json.type.mapping: ActivityNotificationMessage:ru.chainichek.hackathon.template.activity.dto.notification.NotificationMessage
+springdoc:
+  swagger-ui:
+    path: /swagger-docs
+    disable-swagger-default-url: true
+  api-docs:
+    path: /docs
+app:
+  version: @project.version@
+  mvc:
+    context-path: /v1
+  client:
+    employee:
+      url: ${EMPLOYEE_SERVICE_HOST:employee:8080}
+      path:
+        base-path: /api/v1
+        find-employee: /employees
+        find-group: /groups/{groupId}
+  kafka:
+    topic:
+      activity-notification: activity-notification
+server:
+  servlet:
+    context-path: /api
