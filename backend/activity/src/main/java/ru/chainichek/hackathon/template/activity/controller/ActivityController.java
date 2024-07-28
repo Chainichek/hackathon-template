@@ -6,7 +6,6 @@ import ru.chainichek.hackathon.template.activity.api.ActivityApi;
 import ru.chainichek.hackathon.template.activity.dto.activity.ActivityRegistrationRequestDto;
 
 import java.time.LocalDateTime;
-import java.util.List;
 import java.util.UUID;
 
 @RestController
@@ -32,12 +31,7 @@ public class ActivityController implements ActivityApi {
     }
 
     @Override
-    public ResponseEntity<?> delete(UUID activityId) {
-        return null;
-    }
-
-    @Override
-    public ResponseEntity<?> invite(UUID activityId, List<String> logins) {
+    public ResponseEntity<?> delete(UUID activityId, String author) {
         return null;
     }
 }
