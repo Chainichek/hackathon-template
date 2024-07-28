@@ -1,4 +1,4 @@
-package ru.chainichek.hackathon.template.activity.model.activity;
+package ru.chainichek.hackathon.template.activity.model;
 
 import io.hypersistence.utils.hibernate.type.json.JsonType;
 import jakarta.persistence.Column;

@@ -1,7 +1,7 @@
 package ru.chainichek.hackathon.template.activity.dto.activity;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
-import ru.chainichek.hackathon.template.activity.model.activity.ActivityStatus;
+import ru.chainichek.hackathon.template.activity.model.ActivityStatus;
 
 import java.time.LocalDateTime;
 
