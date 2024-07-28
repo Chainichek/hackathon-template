@@ -16,6 +16,11 @@ springdoc:
   swagger-ui:
     path: /swagger-docs
     disable-swagger-default-url: true
+  api-docs:
+    path: /docs
 app:
   mvc:
-    context-path: /api/v1
+    context-path: /v1
+server:
+  servlet:
+    context-path: /api

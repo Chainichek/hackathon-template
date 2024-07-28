@@ -72,8 +72,8 @@ public interface ActivityApi {
     @GetMapping("/{activityId}")
     ResponseEntity<?> find(@PathVariable("activityId") UUID activityId);
 
-    @GetMapping("/me/{login}")
-    ResponseEntity<?> findByLogin(@PathVariable("login") @NotNull @Valid String login,
+    @GetMapping("")
+    ResponseEntity<?> findByLogin(@RequestParam("login") String login,
                                   @RequestParam(value = "startAt", required = false) LocalDateTime startAt,
                                   @RequestParam(value = "endAt", required = false) LocalDateTime endAt);
 

@@ -44,10 +44,13 @@ public class ActivityService {
     }
 
     @Transactional
-    public UUID create(@NonNull ActivityRegistrationRequestDto request,
+    public ActivityDto create(@NonNull ActivityRegistrationRequestDto request,
                               @NonNull String author) {
-        final Activity activity = activityRepo.save(activityMapper.mapToActivity(request, author));
-        return activity.getId();
+        return activityMapper.mapToActivityDto(
+                activityRepo.save(
+                        activityMapper.mapToActivity(request, author)
+                )
+        );
     }
 
     @Transactional

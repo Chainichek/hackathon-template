@@ -4,12 +4,13 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 import ru.chainichek.hackathon.template.activity.api.ActivityApi;
+import ru.chainichek.hackathon.template.activity.dto.activity.ActivityDto;
 import ru.chainichek.hackathon.template.activity.dto.activity.ActivityRegistrationRequestDto;
 import ru.chainichek.hackathon.template.activity.model.user.Role;
 import ru.chainichek.hackathon.template.activity.service.ActivityService;
 
-import java.net.URI;
 import java.time.LocalDateTime;
 import java.util.UUID;
 
@@ -36,8 +37,12 @@ public class ActivityController implements ActivityApi {
     @Override
     public ResponseEntity<?> create(String author,
                                     ActivityRegistrationRequestDto request) {
-        final UUID activityId = activityService.create(request, author);
-        return ResponseEntity.created(URI.create("%s/activity/find/%s".formatted(baseContext, activityId))).build();
+        final ActivityDto activity = activityService.create(request, author);
+        return ResponseEntity.created(ServletUriComponentsBuilder.fromCurrentRequest()
+                        .path("/{activityId}")
+                        .buildAndExpand(activity.id())
+                        .toUri())
+                .body(activity);
     }
 
     @Override

@@ -17,6 +17,9 @@ import java.util.List;
 public interface ActivityMapper {
     @Named("mapToLogins")
     default List<String> mapToLogins(Collection<ActivityEmployee> employees) {
+        if (employees == null || employees.isEmpty()) {
+            return null;
+        }
         return employees.stream()
                 .map(x -> x.getId().getEmployeeLogin())
                 .toList();
