@@ -12,6 +12,14 @@ spring:
     change-log: db/changelog/changelog.xml
   jackson:
     date-format: com.fasterxml.jackson.databind.util.StdDateFormat
+  kafka:
+    bootstrap-servers: ${SPRING_KAFKA_BOOTSTRAP_SERVERS:localhost:9092}
+    producer:
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
+      properties:
+        spring.json.value.default.type: ru.chainichek.hackathon.template.activity.dto.notification.NotificationMessage
+        spring.json.type.mapping: ActivityNotificationMessage:ru.chainichek.hackathon.template.activity.dto.notification.NotificationMessage
 springdoc:
   swagger-ui:
     path: /swagger-docs
@@ -28,6 +36,9 @@ app:
         base-path: /api/v1
         find-employee: /employees
         find-group: /groups/{groupId}
+  kafka:
+    topic:
+      activity-notification: activity-notification
 server:
   servlet:
     context-path: /api
