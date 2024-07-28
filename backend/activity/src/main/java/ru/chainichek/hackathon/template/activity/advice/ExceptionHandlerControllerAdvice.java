@@ -12,6 +12,8 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 import org.springframework.web.method.annotation.HandlerMethodValidationException;
 import ru.chainichek.hackathon.template.activity.dto.util.ErrorMessage;
 import ru.chainichek.hackathon.template.activity.dto.util.InternalErrorMessage;
+import ru.chainichek.hackathon.template.activity.exception.ForbiddenException;
+import ru.chainichek.hackathon.template.activity.exception.NotFoundException;
 
 import java.time.LocalDateTime;
 import java.util.Arrays;
@@ -64,6 +66,39 @@ public class ExceptionHandlerControllerAdvice {
 
         return ResponseEntity
                 .status(HttpStatus.BAD_REQUEST)
+                .body(message);
+    }
+
+    @ExceptionHandler(ForbiddenException.class)
+    public ResponseEntity<ErrorMessage> forbiddenException(ForbiddenException exception,
+                                                           HttpServletRequest request) {
+        final ErrorMessage message = new ErrorMessage(LocalDateTime.now(),
+                HttpStatus.FORBIDDEN.getReasonPhrase(),
+                HttpStatus.FORBIDDEN.value(),
+                exception.getMessage(),
+                request.getRequestURI());
+
+        log.error(exception.getMessage(), exception);
+
+        return ResponseEntity
+                .status(HttpStatus.FORBIDDEN)
+                .body(message);
+    }
+
+    //404
+    @ExceptionHandler(NotFoundException.class)
+    public ResponseEntity<ErrorMessage> notFoundException(NotFoundException exception,
+                                                          HttpServletRequest request) {
+        final ErrorMessage message = new ErrorMessage(LocalDateTime.now(),
+                HttpStatus.NOT_FOUND.getReasonPhrase(),
+                HttpStatus.NOT_FOUND.value(),
+                exception.getMessage(),
+                request.getRequestURI());
+
+        log.error(exception.getMessage(), exception);
+
+        return ResponseEntity
+                .status(HttpStatus.NOT_FOUND)
                 .body(message);
     }
 

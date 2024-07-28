@@ -27,6 +27,7 @@ springdoc:
   api-docs:
     path: /docs
 app:
+  version: @project.version@
   mvc:
     context-path: /v1
   client:

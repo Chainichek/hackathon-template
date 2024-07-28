@@ -7,6 +7,7 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 import ru.chainichek.hackathon.template.activity.api.ActivityApi;
 import ru.chainichek.hackathon.template.activity.dto.activity.ActivityDto;
 import ru.chainichek.hackathon.template.activity.dto.activity.ActivityRegistrationRequestDto;
+import ru.chainichek.hackathon.template.activity.model.activity.ActivityStatus;
 import ru.chainichek.hackathon.template.activity.model.user.Role;
 import ru.chainichek.hackathon.template.activity.service.ActivityService;
 
@@ -25,9 +26,10 @@ public class ActivityController implements ActivityApi {
 
     @Override
     public ResponseEntity<?> findByLogin(String login,
+                                         ActivityStatus status,
                                          LocalDateTime startAt,
                                          LocalDateTime endAt) {
-        return ResponseEntity.ok(activityService.findAllByLogin(login, startAt, endAt));
+        return ResponseEntity.ok(activityService.findAllByLogin(login, status, startAt, endAt));
     }
 
     @Override

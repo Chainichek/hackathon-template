@@ -11,6 +11,7 @@ import ru.chainichek.hackathon.template.activity.exception.ForbiddenException;
 import ru.chainichek.hackathon.template.activity.exception.NotFoundException;
 import ru.chainichek.hackathon.template.activity.mapper.ActivityMapper;
 import ru.chainichek.hackathon.template.activity.model.activity.Activity;
+import ru.chainichek.hackathon.template.activity.model.activity.ActivityStatus;
 import ru.chainichek.hackathon.template.activity.model.user.Role;
 import ru.chainichek.hackathon.template.activity.repo.ActivityRepo;
 
@@ -35,13 +36,14 @@ public class ActivityService {
     }
 
     public List<ActivityDto> findAllByLogin(@NonNull String login,
+                                            ActivityStatus status,
                                             LocalDateTime startAt,
                                             LocalDateTime endAt) {
         if (startAt.isAfter(endAt)) {
             throw new IllegalArgumentException(ExceptionMessage.ILLEGAL_DATE_RANGE_EXCEPTION_MESSAGE.formatted(startAt, endAt));
         }
 
-        return activityRepo.findByEmployeeLoginAndDateRange(login, startAt, endAt)
+        return activityRepo.findByEmployeeLoginAndStatusAndDateRange(login, status, startAt, endAt)
                 .stream()
                 .map(activityMapper::map)
                 .toList();
