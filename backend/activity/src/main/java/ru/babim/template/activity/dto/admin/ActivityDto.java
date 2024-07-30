@@ -1,7 +1,7 @@
-package ru.chainichek.hackathon.template.activity.dto.admin;
+package ru.babim.template.activity.dto.admin;
 
-import ru.chainichek.hackathon.template.activity.dto.activity.ActivityStatusHistoryDto;
-import ru.chainichek.hackathon.template.activity.model.activity.ActivityStatus;
+import ru.babim.template.activity.dto.activity.ActivityStatusHistoryDto;
+import ru.babim.template.activity.model.activity.ActivityStatus;
 
 import java.time.LocalDateTime;
 import java.util.List;

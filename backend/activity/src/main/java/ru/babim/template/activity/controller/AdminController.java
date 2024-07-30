@@ -1,12 +1,12 @@
-package ru.chainichek.hackathon.template.activity.controller;
+package ru.babim.template.activity.controller;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RestController;
-import ru.chainichek.hackathon.template.activity.api.AdminApi;
-import ru.chainichek.hackathon.template.activity.model.activity.ActivityStatus;
-import ru.chainichek.hackathon.template.activity.model.activity.EmployeeStatus;
-import ru.chainichek.hackathon.template.activity.service.AdminService;
+import ru.babim.template.activity.api.AdminApi;
+import ru.babim.template.activity.model.activity.ActivityStatus;
+import ru.babim.template.activity.model.activity.EmployeeStatus;
+import ru.babim.template.activity.service.AdminService;
 
 import java.util.UUID;
 

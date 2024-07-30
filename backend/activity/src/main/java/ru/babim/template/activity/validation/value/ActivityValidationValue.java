@@ -1,4 +1,4 @@
-package ru.chainichek.hackathon.template.activity.validation.value;
+package ru.babim.template.activity.validation.value;
 
 public class ActivityValidationValue {
     public static final int TITLE_MIN_LENGTH = 4;

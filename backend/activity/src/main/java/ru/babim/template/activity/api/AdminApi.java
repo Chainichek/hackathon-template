@@ -1,4 +1,4 @@
-package ru.chainichek.hackathon.template.activity.api;
+package ru.babim.template.activity.api;
 
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.Content;
@@ -13,11 +13,11 @@ import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import ru.chainichek.hackathon.template.activity.dto.admin.ActivityDto;
-import ru.chainichek.hackathon.template.activity.dto.util.ErrorMessage;
-import ru.chainichek.hackathon.template.activity.dto.util.InternalErrorMessage;
-import ru.chainichek.hackathon.template.activity.model.activity.ActivityStatus;
-import ru.chainichek.hackathon.template.activity.model.activity.EmployeeStatus;
+import ru.babim.template.activity.dto.admin.ActivityDto;
+import ru.babim.template.activity.dto.util.ErrorMessage;
+import ru.babim.template.activity.dto.util.InternalErrorMessage;
+import ru.babim.template.activity.model.activity.ActivityStatus;
+import ru.babim.template.activity.model.activity.EmployeeStatus;
 
 import java.util.UUID;
 

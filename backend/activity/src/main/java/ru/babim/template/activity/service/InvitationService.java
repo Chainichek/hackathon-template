@@ -1,19 +1,19 @@
-package ru.chainichek.hackathon.template.activity.service;
+package ru.babim.template.activity.service;
 
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import ru.chainichek.hackathon.template.activity.client.EmployeeClient;
-import ru.chainichek.hackathon.template.activity.dto.employee.EmployeeDto;
-import ru.chainichek.hackathon.template.activity.dto.employee.GroupDto;
-import ru.chainichek.hackathon.template.activity.exception.ForbiddenException;
-import ru.chainichek.hackathon.template.activity.exception.WrongStatusException;
-import ru.chainichek.hackathon.template.activity.model.activity.Activity;
-import ru.chainichek.hackathon.template.activity.model.activity.ActivityStatus;
-import ru.chainichek.hackathon.template.activity.model.activity.EmployeeStatus;
-import ru.chainichek.hackathon.template.activity.model.user.Role;
+import ru.babim.template.activity.client.EmployeeClient;
+import ru.babim.template.activity.dto.employee.EmployeeDto;
+import ru.babim.template.activity.dto.employee.GroupDto;
+import ru.babim.template.activity.exception.ForbiddenException;
+import ru.babim.template.activity.exception.WrongStatusException;
+import ru.babim.template.activity.model.activity.Activity;
+import ru.babim.template.activity.model.activity.ActivityStatus;
+import ru.babim.template.activity.model.activity.EmployeeStatus;
+import ru.babim.template.activity.model.user.Role;
 
 import java.util.List;
 import java.util.UUID;

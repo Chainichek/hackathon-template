@@ -1,10 +1,10 @@
-package ru.chainichek.hackathon.template.activity.validation.validator;
+package ru.babim.template.activity.validation.validator;
 
 import jakarta.validation.ConstraintValidator;
 import jakarta.validation.ConstraintValidatorContext;
 import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
-import ru.chainichek.hackathon.template.activity.annotation.IsDateAfterOtherDate;
+import ru.babim.template.activity.annotation.IsDateAfterOtherDate;
 
 import java.lang.reflect.Method;
 import java.time.LocalDate;

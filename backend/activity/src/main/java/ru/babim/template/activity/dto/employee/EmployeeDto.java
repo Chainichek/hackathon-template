@@ -1,4 +1,4 @@
-package ru.chainichek.hackathon.template.activity.dto.employee;
+package ru.babim.template.activity.dto.employee;
 
 public record EmployeeDto(String login,
                           String name,

@@ -1,6 +1,6 @@
-package ru.chainichek.hackathon.template.activity.dto.activity;
+package ru.babim.template.activity.dto.activity;
 
-import ru.chainichek.hackathon.template.activity.model.activity.ActivityStatus;
+import ru.babim.template.activity.model.activity.ActivityStatus;
 
 import java.time.LocalDateTime;
 

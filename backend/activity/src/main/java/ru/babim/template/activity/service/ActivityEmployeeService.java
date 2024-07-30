@@ -1,15 +1,15 @@
-package ru.chainichek.hackathon.template.activity.service;
+package ru.babim.template.activity.service;
 
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
-import ru.chainichek.hackathon.template.activity.dto.employee.EmployeeDto;
-import ru.chainichek.hackathon.template.activity.exception.NotFoundException;
-import ru.chainichek.hackathon.template.activity.mapper.ActivityEmployeeMapper;
-import ru.chainichek.hackathon.template.activity.model.activity.Activity;
-import ru.chainichek.hackathon.template.activity.model.activity.ActivityEmployee;
-import ru.chainichek.hackathon.template.activity.model.activity.EmployeeStatus;
-import ru.chainichek.hackathon.template.activity.repo.ActivityEmployeeRepo;
+import ru.babim.template.activity.dto.employee.EmployeeDto;
+import ru.babim.template.activity.exception.NotFoundException;
+import ru.babim.template.activity.mapper.ActivityEmployeeMapper;
+import ru.babim.template.activity.model.activity.Activity;
+import ru.babim.template.activity.model.activity.ActivityEmployee;
+import ru.babim.template.activity.model.activity.EmployeeStatus;
+import ru.babim.template.activity.repo.ActivityEmployeeRepo;
 
 import java.util.UUID;
 

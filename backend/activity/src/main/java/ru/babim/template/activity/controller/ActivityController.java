@@ -1,15 +1,15 @@
-package ru.chainichek.hackathon.template.activity.controller;
+package ru.babim.template.activity.controller;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
-import ru.chainichek.hackathon.template.activity.api.ActivityApi;
-import ru.chainichek.hackathon.template.activity.dto.activity.ActivityDto;
-import ru.chainichek.hackathon.template.activity.dto.activity.ActivityRegistrationRequestDto;
-import ru.chainichek.hackathon.template.activity.model.activity.ActivityStatus;
-import ru.chainichek.hackathon.template.activity.model.user.Role;
-import ru.chainichek.hackathon.template.activity.service.ActivityService;
+import ru.babim.template.activity.api.ActivityApi;
+import ru.babim.template.activity.dto.activity.ActivityDto;
+import ru.babim.template.activity.dto.activity.ActivityRegistrationRequestDto;
+import ru.babim.template.activity.model.activity.ActivityStatus;
+import ru.babim.template.activity.model.user.Role;
+import ru.babim.template.activity.service.ActivityService;
 
 import java.time.LocalDateTime;
 import java.util.UUID;

@@ -1,4 +1,4 @@
-package ru.chainichek.hackathon.template.activity.exception;
+package ru.babim.template.activity.exception;
 
 public class NotFoundException extends RuntimeException {
     public NotFoundException(String message, String id) {

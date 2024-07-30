@@ -1,4 +1,4 @@
-package ru.chainichek.hackathon.template.activity.model.activity;
+package ru.babim.template.activity.model.activity;
 
 import io.hypersistence.utils.hibernate.type.json.JsonType;
 import jakarta.persistence.Column;
@@ -17,15 +17,15 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.hibernate.annotations.Type;
-import ru.chainichek.hackathon.template.activity.dto.activity.ActivityStatusHistoryDto;
+import ru.babim.template.activity.dto.activity.ActivityStatusHistoryDto;
 
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Set;
 import java.util.UUID;
 
-import static ru.chainichek.hackathon.template.activity.validation.value.ActivityValidationValue.DESCRIPTION_MAX_LENGTH;
-import static ru.chainichek.hackathon.template.activity.validation.value.ActivityValidationValue.TITLE_MAX_LENGTH;
+import static ru.babim.template.activity.validation.value.ActivityValidationValue.DESCRIPTION_MAX_LENGTH;
+import static ru.babim.template.activity.validation.value.ActivityValidationValue.TITLE_MAX_LENGTH;
 
 @Getter
 @Setter

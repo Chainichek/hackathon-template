@@ -1,4 +1,4 @@
-package ru.chainichek.hackathon.template.activity.dto.employee;
+package ru.babim.template.activity.dto.employee;
 
 import java.util.List;
 import java.util.UUID;

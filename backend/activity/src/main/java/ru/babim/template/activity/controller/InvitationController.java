@@ -1,11 +1,11 @@
-package ru.chainichek.hackathon.template.activity.controller;
+package ru.babim.template.activity.controller;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RestController;
-import ru.chainichek.hackathon.template.activity.api.InvitationApi;
-import ru.chainichek.hackathon.template.activity.model.user.Role;
-import ru.chainichek.hackathon.template.activity.service.InvitationService;
+import ru.babim.template.activity.api.InvitationApi;
+import ru.babim.template.activity.model.user.Role;
+import ru.babim.template.activity.service.InvitationService;
 
 import java.util.List;
 import java.util.UUID;

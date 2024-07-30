@@ -1,12 +1,12 @@
-package ru.chainichek.hackathon.template.activity.service;
+package ru.babim.template.activity.service;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.stereotype.Service;
-import ru.chainichek.hackathon.template.activity.dto.employee.EmployeeDto;
-import ru.chainichek.hackathon.template.activity.dto.notification.NotificationMessage;
-import ru.chainichek.hackathon.template.activity.mapper.NotificationMapper;
+import ru.babim.template.activity.dto.employee.EmployeeDto;
+import ru.babim.template.activity.dto.notification.NotificationMessage;
+import ru.babim.template.activity.mapper.NotificationMapper;
 
 import java.util.UUID;
 

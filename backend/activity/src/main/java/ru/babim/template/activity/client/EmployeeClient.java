@@ -1,13 +1,13 @@
-package ru.chainichek.hackathon.template.activity.client;
+package ru.babim.template.activity.client;
 
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-import ru.chainichek.hackathon.template.activity.config.FeignConfig;
-import ru.chainichek.hackathon.template.activity.dto.employee.EmployeeDto;
-import ru.chainichek.hackathon.template.activity.dto.employee.GroupDto;
+import ru.babim.template.activity.config.FeignConfig;
+import ru.babim.template.activity.dto.employee.EmployeeDto;
+import ru.babim.template.activity.dto.employee.GroupDto;
 
 import java.util.UUID;
 

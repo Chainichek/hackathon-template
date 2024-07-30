@@ -18,8 +18,8 @@ spring:
       key-serializer: org.apache.kafka.common.serialization.StringSerializer
       value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
       properties:
-        spring.json.value.default.type: ru.chainichek.hackathon.template.activity.dto.notification.NotificationMessage
-        spring.json.type.mapping: ActivityNotificationMessage:ru.chainichek.hackathon.template.activity.dto.notification.NotificationMessage
+        spring.json.value.default.type: ru.babim.template.activity.dto.notification.NotificationMessage
+        spring.json.type.mapping: ActivityNotificationMessage:ru.babim.template.activity.dto.notification.NotificationMessage
 springdoc:
   swagger-ui:
     path: /swagger-docs

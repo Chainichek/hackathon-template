@@ -1,4 +1,4 @@
-package ru.chainichek.hackathon.template.activity.dto.util;
+package ru.babim.template.activity.dto.util;
 
 import java.time.LocalDateTime;
 

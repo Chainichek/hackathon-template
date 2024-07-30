@@ -1,4 +1,4 @@
-package ru.chainichek.hackathon.template.activity.model.activity;
+package ru.babim.template.activity.model.activity;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Embeddable;

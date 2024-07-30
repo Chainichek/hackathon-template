@@ -1,4 +1,4 @@
-package ru.chainichek.hackathon.template.activity.dto.notification;
+package ru.babim.template.activity.dto.notification;
 
 import java.util.UUID;
 

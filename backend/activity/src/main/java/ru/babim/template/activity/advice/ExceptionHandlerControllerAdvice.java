@@ -10,11 +10,11 @@ import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 import org.springframework.web.method.annotation.HandlerMethodValidationException;
-import ru.chainichek.hackathon.template.activity.dto.util.ErrorMessage;
-import ru.chainichek.hackathon.template.activity.dto.util.InternalErrorMessage;
-import ru.chainichek.hackathon.template.activity.exception.ForbiddenException;
-import ru.chainichek.hackathon.template.activity.exception.NotFoundException;
-import ru.chainichek.hackathon.template.activity.exception.WrongStatusException;
+import ru.babim.template.activity.dto.util.ErrorMessage;
+import ru.babim.template.activity.dto.util.InternalErrorMessage;
+import ru.babim.template.activity.exception.ForbiddenException;
+import ru.babim.template.activity.exception.NotFoundException;
+import ru.babim.template.activity.exception.WrongStatusException;
 
 import java.time.LocalDateTime;
 import java.util.Arrays;

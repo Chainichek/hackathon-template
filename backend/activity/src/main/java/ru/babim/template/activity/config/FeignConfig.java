@@ -1,4 +1,4 @@
-package ru.chainichek.hackathon.template.activity.config;
+package ru.babim.template.activity.config;
 
 import feign.Logger;
 import org.springframework.context.annotation.Bean;

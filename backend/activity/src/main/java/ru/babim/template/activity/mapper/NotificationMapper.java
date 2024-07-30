@@ -1,10 +1,10 @@
-package ru.chainichek.hackathon.template.activity.mapper;
+package ru.babim.template.activity.mapper;
 
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.MappingConstants;
-import ru.chainichek.hackathon.template.activity.dto.employee.EmployeeDto;
-import ru.chainichek.hackathon.template.activity.dto.notification.NotificationMessage;
+import ru.babim.template.activity.dto.employee.EmployeeDto;
+import ru.babim.template.activity.dto.notification.NotificationMessage;
 
 import java.util.UUID;
 
