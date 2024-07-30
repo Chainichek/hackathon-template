@@ -67,7 +67,7 @@ public class Activity {
     @Column(nullable = false)
     private LocalDateTime createdAt = LocalDateTime.now();
 
-    void setActivityStatus(ActivityStatus status) {
+    public void setStatus(ActivityStatus status) {
         this.status = status;
         statusHistory.add(new ActivityStatusHistoryDto(status));
     }
