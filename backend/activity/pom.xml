@@ -8,7 +8,7 @@
         <version>3.3.2</version>
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
-    <groupId>ru.chainichek.hackathon.template</groupId>
+    <groupId>ru.babim.template</groupId>
     <artifactId>activity</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <name>activity</name>

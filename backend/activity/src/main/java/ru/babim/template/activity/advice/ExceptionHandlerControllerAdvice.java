@@ -1,4 +1,4 @@
-package ru.chainichek.hackathon.template.activity.advice;
+package ru.babim.template.activity.advice;
 
 import jakarta.servlet.http.HttpServletRequest;
 import lombok.extern.slf4j.Slf4j;
