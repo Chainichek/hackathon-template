@@ -1,5 +1,6 @@
 package ru.babim.lib.babimlibspringbootstarter.autoconfig;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import io.jsonwebtoken.io.Decoders;
 import io.jsonwebtoken.security.Keys;
 import lombok.RequiredArgsConstructor;
@@ -15,8 +16,6 @@ import ru.babim.lib.babimlibspringbootstarter.properties.JwtFilterProperties;
 import ru.babim.lib.jwtprovider.filter.JwtFilter;
 import ru.babim.lib.jwtprovider.provider.JwtEmptyProvider;
 import ru.babim.lib.jwtprovider.provider.JwtProvider;
-import ru.babim.lib.jwtprovider.resolver.AuthenticationResolver;
-import ru.babim.lib.jwtprovider.resolver.JwtResolver;
 import ru.babim.lib.jwtprovider.util.DefaultErrorSender;
 import ru.babim.lib.jwtprovider.util.ErrorSender;
 
@@ -31,7 +30,7 @@ public class JwtFilterAutoConfig {
     private final JwtFilterProperties jwtFilterProperties;
 
     @Bean
-    @ConditionalOnProperty(prefix = "babim-lib.jwt-filter.secret-key", value = "autoconfigureBean", havingValue = "true")
+    @ConditionalOnProperty(prefix = "babim-lib.jwt-filter.secret-key", value = "autoconfigure-bean", havingValue = "true")
     public SecretKey jwsSecretKey() {
         final byte[] secretBytes = jwtFilterProperties.getSecretKey().getUsingBase64()
                 ? Decoders.BASE64.decode(jwtFilterProperties.getSecretKey().getKey())
@@ -43,20 +42,13 @@ public class JwtFilterAutoConfig {
     @ConditionalOnMissingBean(JwtProvider.class)
     @ConditionalOnBean(SecretKey.class)
     @ConditionalOnProperty(prefix = "babim-lib.jwt-filter", value = "enabled", havingValue = "true")
-    public JwtProvider jwtEmptyProvider(SecretKey jwtSecretKey) {
-        return new JwtEmptyProvider(jwtSecretKey);
-    }
-
-    @Bean
-    @ConditionalOnBean(JwtProvider.class)
-    @ConditionalOnProperty(prefix = "babim-lib.jwt-filter", value = "enabled", havingValue = "true")
-    public JwtResolver authenticationResolver(JwtProvider jwtProvider) {
-        return new AuthenticationResolver(jwtProvider);
+    public JwtProvider jwtEmptyProvider(SecretKey jwsSecretKey) {
+        return new JwtEmptyProvider(jwsSecretKey);
     }
 
     @Bean
     @ConditionalOnProperty(prefix = "babim-lib.jwt-filter", value = "enabled", havingValue = "true")
-    public ErrorSender defaultErrorSender() {
-        return new DefaultErrorSender();
+    public ErrorSender defaultErrorSender(ObjectMapper mapper) {
+        return new DefaultErrorSender(mapper);
     }
 }

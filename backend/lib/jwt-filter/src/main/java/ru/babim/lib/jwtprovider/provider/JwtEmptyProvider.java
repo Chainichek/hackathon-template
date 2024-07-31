@@ -1,16 +1,16 @@
 package ru.babim.lib.jwtprovider.provider;
 
 import org.springframework.security.authentication.AbstractAuthenticationToken;
-import org.springframework.security.core.authority.AuthorityUtils;
-import ru.babim.lib.jwtprovider.auuthentication.EmptyAuthenticationToken;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 
 import javax.crypto.SecretKey;
+import java.util.ArrayList;
 
 public class JwtEmptyProvider implements JwtProvider {
     private final JwtProvider provider;
 
     public JwtEmptyProvider(SecretKey secretKey) {
-        this.provider = new JwtClaimsProvider(secretKey, (claims -> new EmptyAuthenticationToken(AuthorityUtils.NO_AUTHORITIES)));
+        this.provider = new JwtClaimsProvider(secretKey, (claims -> new UsernamePasswordAuthenticationToken(null, null, new ArrayList<>())));
     }
 
     @Override

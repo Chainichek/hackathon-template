@@ -7,10 +7,12 @@ import jakarta.servlet.http.HttpServletResponse;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.authentication.BadCredentialsException;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.util.StringUtils;
 import org.springframework.web.filter.OncePerRequestFilter;
 import ru.babim.lib.jwtprovider.exception.UnauthorizedException;
-import ru.babim.lib.jwtprovider.resolver.JwtResolver;
+import ru.babim.lib.jwtprovider.provider.JwtProvider;
 import ru.babim.lib.jwtprovider.util.ErrorSender;
 
 import java.io.IOException;
@@ -22,7 +24,7 @@ public class JwtFilter extends OncePerRequestFilter {
     public static final String AUTH_HEADER_NAME = "Authorization";
 
     private final ErrorSender errorSender;
-    private final JwtResolver jwtResolver;
+    private final JwtProvider jwtProvider;
 
     private final List<String> requestMatchers;
 
@@ -39,14 +41,15 @@ public class JwtFilter extends OncePerRequestFilter {
             );
         } catch (UnauthorizedException e) {
             logger.warn("Unauthorized request to %s: Missing %s header".formatted(AUTH_HEADER_NAME, request.getRequestURI()));
-            errorSender.sendUnauthorized(e, response);
+            errorSender.sendUnauthorized(e, request, response);
             return;
         }
         try {
-            jwtResolver.resolve(authToken);
+            final @NonNull Authentication authentication = jwtProvider.getAuthentication(authToken);
+            SecurityContextHolder.getContext().setAuthentication(authentication);
         } catch (BadCredentialsException e) {
             logger.warn("Forbidden request to %s: %s".formatted(request.getRequestURI(), e.getMessage()));
-            errorSender.sendBadCredentials(e, response);
+            errorSender.sendBadCredentials(e, request, response);
             return;
         }
 
@@ -56,7 +59,10 @@ public class JwtFilter extends OncePerRequestFilter {
     @Override
     protected boolean shouldNotFilter(@NonNull HttpServletRequest request) {
         return requestMatchers.stream()
-                .noneMatch(uriPattern -> Pattern.matches(uriPattern.replace("**", ".*"), request.getRequestURI()));
+                .noneMatch(uriPattern -> Pattern.matches(
+                        uriPattern.replace("**", ".*"),
+                        request.getRequestURI())
+                );
     }
 
     private String resolveToken(final HttpServletRequest request) throws UnauthorizedException {
