@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>ru.babim</groupId>
+    <artifactId>lib</artifactId>
+    <version>1.0.0-SNAPSHOT</version>
+    <packaging>pom</packaging>
+    <name>lib</name>
+    <description>template for hackathon</description>
+    <url/>
+    <licenses>
+        <license/>
+    </licenses>
+    <developers>
+        <developer/>
+    </developers>
+    <modules>
+        <module>babim-lib-spring-boot-starter</module>
+        <module>logger</module>
+        <module>jwt-filter</module>
+    </modules>
+    <scm>
+        <connection/>
+        <developerConnection/>
+        <tag/>
+        <url/>
+    </scm>
+    <properties>
+        <!--Compiler-->
+        <java.version>17</java.version>
+        <org.apache.maven.plugins.maven-compiler-plugin.version>3.13.0</org.apache.maven.plugins.maven-compiler-plugin.version>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <!--Spring Boot version-->
+        <org.springframework.boot.version>3.3.2</org.springframework.boot.version>
+        <!--Dev-->
+        <org.projectlombok.version>1.18.32</org.projectlombok.version>
+        <!--Lib version-->
+        <babim-lib.babim-lib-spring-boot-starter.version>1.0.0-SNAPSHOT</babim-lib.babim-lib-spring-boot-starter.version>
+        <babim-lib.logger.version>1.0.0-SNAPSHOT</babim-lib.logger.version>
+        <babim-lib.jwt-provider.version>1.0.0-SNAPSHOT</babim-lib.jwt-provider.version>
+    </properties>
+
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-dependencies</artifactId>
+                <version>${org.springframework.boot.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+
+            <dependency>
+                <groupId>org.projectlombok</groupId>
+                <artifactId>lombok</artifactId>
+                <version>${org.projectlombok.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+
+            <dependency>
+                <groupId>ru.babim.lib</groupId>
+                <artifactId>babim-lib-spring-boot-starter</artifactId>
+                <version>${babim-lib.babim-lib-spring-boot-starter.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>ru.babim.lib</groupId>
+                <artifactId>logger</artifactId>
+                <version>${babim-lib.logger.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>ru.babim.lib</groupId>
+                <artifactId>jwt-provider</artifactId>
+                <version>${babim-lib.jwt-provider.version}</version>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+
+    <build>
+        <finalName>babim-lib</finalName>
+        <plugins>
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+                <version>${org.springframework.boot.version}</version>
+                <executions>
+                    <execution>
+                        <id>repackage</id>
+                        <goals>
+                            <goal>repackage</goal>
+                        </goals>
+                        <configuration>
+                            <skip>true</skip>
+                        </configuration>
+                    </execution>
+                </executions>
+                <configuration>
+                    <excludes>
+                        <exclude>
+                            <groupId>org.projectlombok</groupId>
+                            <artifactId>lombok</artifactId>
+                        </exclude>
+                    </excludes>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+
+</project>
