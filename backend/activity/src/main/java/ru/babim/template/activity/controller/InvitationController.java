@@ -2,9 +2,9 @@ package ru.babim.template.activity.controller;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.RestController;
 import ru.babim.template.activity.api.InvitationApi;
-import ru.babim.template.activity.model.user.Role;
 import ru.babim.template.activity.service.InvitationService;
 
 import java.util.List;
@@ -17,33 +17,31 @@ public class InvitationController implements InvitationApi {
 
     @Override
     public ResponseEntity<?> invite(UUID activityId,
-                                    String author,
-                                    Role role,
-                                    List<String> employeeLogins) {
-        invitationService.inviteEmployees(activityId, author, role, employeeLogins);
+                                    List<String> employeeLogins,
+                                    Authentication authentication) {
+        invitationService.inviteEmployees(activityId, employeeLogins, authentication);
         return ResponseEntity.ok().build();
     }
 
     @Override
     public ResponseEntity<?> inviteGroup(UUID activityId,
-                                         String author,
-                                         Role role,
-                                         UUID groupId) {
-        invitationService.inviteGroup(activityId, groupId, author, role);
+                                         UUID groupId,
+                                         Authentication authentication) {
+        invitationService.inviteGroup(activityId, groupId, authentication);
         return ResponseEntity.ok().build();
     }
 
     @Override
     public ResponseEntity<?> accept(UUID activityId,
-                                    String login) {
-        invitationService.acceptInvite(activityId, login);
+                                    Authentication authentication) {
+        invitationService.acceptInvite(activityId, authentication);
         return ResponseEntity.ok().build();
     }
 
     @Override
     public ResponseEntity<?> deny(UUID activityId,
-                                  String login) {
-        invitationService.denyInvite(activityId, login);
+                                  Authentication authentication) {
+        invitationService.denyInvite(activityId, authentication);
         return ResponseEntity.ok().build();
     }
 }

@@ -1,6 +1,9 @@
 package ru.babim.template.activity.config;
 
 import io.swagger.v3.oas.annotations.OpenAPIDefinition;
+import io.swagger.v3.oas.annotations.enums.SecuritySchemeIn;
+import io.swagger.v3.oas.annotations.enums.SecuritySchemeType;
+import io.swagger.v3.oas.annotations.security.SecurityScheme;
 import io.swagger.v3.oas.models.OpenAPI;
 import io.swagger.v3.oas.models.info.Info;
 import org.springframework.beans.factory.annotation.Value;
@@ -11,6 +14,14 @@ import org.springframework.core.annotation.Order;
 
 @Configuration
 @OpenAPIDefinition
+@SecurityScheme(
+        name = "Authorization",
+        bearerFormat = "JWT",
+        scheme = "bearer",
+        type = SecuritySchemeType.HTTP,
+        in = SecuritySchemeIn.HEADER
+
+)
 public class OpenAPIConfig {
     @Value("${app.version}")
     private String appVersion;

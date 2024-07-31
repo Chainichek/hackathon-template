@@ -3,6 +3,8 @@ package ru.babim.template.activity.service;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import ru.babim.template.activity.dto.activity.ActivityDto;
@@ -12,8 +14,8 @@ import ru.babim.template.activity.exception.NotFoundException;
 import ru.babim.template.activity.mapper.ActivityMapper;
 import ru.babim.template.activity.model.activity.Activity;
 import ru.babim.template.activity.model.activity.ActivityStatus;
-import ru.babim.template.activity.model.user.Role;
 import ru.babim.template.activity.repo.ActivityRepo;
+import ru.babim.template.activity.security.Role;
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -50,39 +52,41 @@ public class ActivityService {
     }
 
     @Transactional
+    @PreAuthorize("hasAnyRole('ADMIN', 'EXPERT', 'RECRUITER')")
     public ActivityDto create(@NonNull ActivityRegistrationRequestDto request,
-                              @NonNull String author) {
+                              @NonNull Authentication authentication) {
         return activityMapper.map(
                 activityRepo.save(
-                        activityMapper.map(request, author)
+                        activityMapper.map(request, authentication.getName())
                 )
         );
     }
 
     @Transactional
+    @PreAuthorize("hasAnyRole('ADMIN', 'EXPERT', 'RECRUITER')")
     public void update(@NonNull UUID id,
                        @NonNull ActivityRegistrationRequestDto request,
-                       @NonNull String author,
-                       @NonNull Role role) {
+                       @NonNull Authentication authentication) {
         final Activity activity = findById(id);
-        if (!activity.getAuthor().equals(author) || role != Role.ADMIN) {
+        if (!activity.getAuthor().equals(authentication.getName()) || authentication.getAuthorities().contains(Role.ADMIN)) {
             throw new ForbiddenException(ExceptionMessage.NO_ACCESS_EXCEPTION_MESSAGE);
         }
         activityRepo.save(activityMapper.map(activity, request));
     }
 
     @Transactional
+    @PreAuthorize("hasAnyRole('ADMIN', 'EXPERT', 'RECRUITER')")
     public void updateStatus(@NonNull Activity activity, @NonNull ActivityStatus status) {
         activity.setStatus(status);
         activityRepo.save(activity);
     }
 
     @Transactional
+    @PreAuthorize("hasAnyRole('ADMIN', 'EXPERT', 'RECRUITER')")
     public void delete(@NonNull UUID id,
-                       @NonNull String author,
-                       @NonNull Role role) {
+                       @NonNull Authentication authentication) {
         final Activity activity = findById(id);
-        if (!activity.getAuthor().equals(author) || role != Role.ADMIN) {
+        if (!activity.getAuthor().equals(authentication.getName()) || authentication.getAuthorities().contains(Role.ADMIN)) {
             throw new ForbiddenException(ExceptionMessage.NO_ACCESS_EXCEPTION_MESSAGE);
         }
 

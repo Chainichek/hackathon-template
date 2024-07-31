@@ -5,6 +5,7 @@ import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -22,6 +23,7 @@ import ru.babim.template.activity.model.activity.EmployeeStatus;
 import java.util.UUID;
 
 @RequestMapping("${app.mvc.context-path}/admin")
+@SecurityRequirement(name = "Authorization")
 @Tag(name = "Admin",
         description = """
                 Contains operations for administrating activities.

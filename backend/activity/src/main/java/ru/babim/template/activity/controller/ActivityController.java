@@ -2,13 +2,13 @@ package ru.babim.template.activity.controller;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 import ru.babim.template.activity.api.ActivityApi;
 import ru.babim.template.activity.dto.activity.ActivityDto;
 import ru.babim.template.activity.dto.activity.ActivityRegistrationRequestDto;
 import ru.babim.template.activity.model.activity.ActivityStatus;
-import ru.babim.template.activity.model.user.Role;
 import ru.babim.template.activity.service.ActivityService;
 
 import java.time.LocalDateTime;
@@ -33,9 +33,9 @@ public class ActivityController implements ActivityApi {
     }
 
     @Override
-    public ResponseEntity<?> create(String author,
-                                    ActivityRegistrationRequestDto request) {
-        final ActivityDto activity = activityService.create(request, author);
+    public ResponseEntity<?> create(ActivityRegistrationRequestDto request,
+                                    Authentication authentication) {
+        final ActivityDto activity = activityService.create(request, authentication);
         return ResponseEntity.created(ServletUriComponentsBuilder.fromCurrentRequest()
                         .path("/{activityId}")
                         .buildAndExpand(activity.id())
@@ -45,18 +45,16 @@ public class ActivityController implements ActivityApi {
 
     @Override
     public ResponseEntity<?> update(UUID activityId,
-                                    String author,
-                                    Role role,
-                                    ActivityRegistrationRequestDto request) {
-        activityService.update(activityId, request, author, role);
+                                    ActivityRegistrationRequestDto request,
+                                    Authentication authentication) {
+        activityService.update(activityId, request, authentication);
         return ResponseEntity.noContent().build();
     }
 
     @Override
     public ResponseEntity<?> delete(UUID activityId,
-                                    String author,
-                                    Role role) {
-        activityService.delete(activityId, author, role);
+                                    Authentication authentication) {
+        activityService.delete(activityId, authentication);
         return ResponseEntity.noContent().build();
     }
 }

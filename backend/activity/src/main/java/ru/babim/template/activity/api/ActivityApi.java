@@ -6,12 +6,14 @@ import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PatchMapping;
@@ -25,12 +27,12 @@ import ru.babim.template.activity.dto.activity.ActivityRegistrationRequestDto;
 import ru.babim.template.activity.dto.util.ErrorMessage;
 import ru.babim.template.activity.dto.util.InternalErrorMessage;
 import ru.babim.template.activity.model.activity.ActivityStatus;
-import ru.babim.template.activity.model.user.Role;
 
 import java.time.LocalDateTime;
 import java.util.UUID;
 
 @RequestMapping("${app.mvc.context-path}/activities")
+@SecurityRequirement(name = "Authorization")
 @Tag(name = "Activities",
         description = """
                 Contains operations for CRUD methods and for getting a list of employee activities. Also can remind about upcoming activities.
@@ -152,8 +154,8 @@ public interface ActivityApi {
             }
     )
     @PostMapping("")
-    ResponseEntity<?> create(@RequestParam("author") @NotBlank @Valid String author,
-                             @RequestBody @NotNull @Valid ActivityRegistrationRequestDto request);
+    ResponseEntity<?> create(@RequestBody @NotNull @Valid ActivityRegistrationRequestDto request,
+                             Authentication authentication);
 
     @Operation(
             summary = "Updating an activity",
@@ -205,9 +207,8 @@ public interface ActivityApi {
     )
     @PatchMapping("/{activityId}")
     ResponseEntity<?> update(@PathVariable("activityId") UUID activityId,
-                             @RequestParam("author") @NotBlank @Valid String author,
-                             @RequestParam("role") @NotBlank @Valid Role role,
-                             @RequestBody @NotNull @Valid ActivityRegistrationRequestDto request);
+                             @RequestBody @NotNull @Valid ActivityRegistrationRequestDto request,
+                             Authentication authentication);
 
     @Operation(
             summary = "Deleting an activity",
@@ -259,6 +260,5 @@ public interface ActivityApi {
     )
     @DeleteMapping("/{activityId}")
     ResponseEntity<?> delete(@PathVariable("activityId") UUID activityId,
-                             @RequestParam("author") @NotBlank @Valid String author,
-                             @RequestParam("role") @NotNull @Valid Role role);
+                             Authentication authentication);
 }
