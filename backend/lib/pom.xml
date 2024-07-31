@@ -30,6 +30,7 @@
         <!--Compiler-->
         <java.version>17</java.version>
         <org.apache.maven.plugins.maven-compiler-plugin.version>3.13.0</org.apache.maven.plugins.maven-compiler-plugin.version>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <!--Spring Boot version-->
         <org.springframework.boot.version>3.3.2</org.springframework.boot.version>
         <!--Dev-->

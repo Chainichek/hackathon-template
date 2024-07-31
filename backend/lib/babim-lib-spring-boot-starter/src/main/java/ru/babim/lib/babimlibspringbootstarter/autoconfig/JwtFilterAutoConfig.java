@@ -27,7 +27,7 @@ import javax.crypto.SecretKey;
 @Configuration
 @ConditionalOnClass(JwtFilter.class)
 @EnableConfigurationProperties(JwtFilterProperties.class)
-public class JwtFilterConfig {
+public class JwtFilterAutoConfig {
     private final JwtFilterProperties jwtFilterProperties;
 
     @Bean

@@ -16,7 +16,7 @@ import ru.babim.lib.logger.aspect.LoggableAspect;
 @Configuration
 @ConditionalOnClass(LoggableAspect.class)
 @EnableConfigurationProperties(LoggerProperties.class)
-public class LoggerConfig {
+public class LoggerAutoConfig {
     private final LoggerProperties properties;
 
     @Bean
