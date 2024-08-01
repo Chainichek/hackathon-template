@@ -1,4 +1,4 @@
-package ru.chainichek.hackathon.template.gateway;
+package ru.babim.template.gateway;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;

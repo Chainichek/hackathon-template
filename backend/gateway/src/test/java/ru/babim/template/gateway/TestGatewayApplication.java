@@ -1,4 +1,4 @@
-package ru.chainichek.hackathon.template.gateway;
+package ru.babim.template.gateway;
 
 import org.springframework.boot.SpringApplication;
 
