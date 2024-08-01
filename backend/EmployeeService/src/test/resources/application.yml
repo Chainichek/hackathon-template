@@ -1,0 +1,14 @@
+spring:
+  application:
+    name: EmployeeService
+  jpa:
+    hibernate:
+      ddl-auto: create-drop
+  liquibase:
+    change-log: db.changelog/v1.0/db.changelog-main.xml
+  datasource:
+    driver-class-name: org.h2.Driver
+
+server:
+  servlet:
+    context-path: /api

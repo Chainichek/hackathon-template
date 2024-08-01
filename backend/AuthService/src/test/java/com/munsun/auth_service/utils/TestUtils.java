@@ -1,45 +1,47 @@
 package com.munsun.auth_service.utils;
 
-import com.munsun.auth_service.dto.request.UserInfoDto;
+import com.munsun.auth_service.dto.request.AccountDto;
+import com.munsun.auth_service.dto.response.AccountPersistentDto;
 import com.munsun.auth_service.models.Account;
-import com.munsun.auth_service.models.User;
 import com.munsun.auth_service.models.enums.Role;
 
 import java.util.UUID;
 
 public class TestUtils {
-    public static UserInfoDto getUserInfoDto_Munir() {
-        return new UserInfoDto(
+
+    public static AccountDto getAccountDto_Munir() {
+        return new AccountDto(
                 "munsun",
-                "qwerty",
-                Role.ADMIN,
-                "Munir",
-                "Sunchalyaev",
-                26,
-                "msunchalyaev@gmail.com",
-                "79873022923"
+                "qwerty12345"
         );
     }
 
-    public static User getUser_Munir() {
-        UserInfoDto userInfoDto = getUserInfoDto_Munir();
-        return User.builder()
-                .name(userInfoDto.name())
-                .email(userInfoDto.email())
-                .phoneNumber(userInfoDto.phoneNumber())
-                .lastname(userInfoDto.lastname())
-                .account(Account.builder()
-                        .login(userInfoDto.login())
-                        .password(userInfoDto.password())
-                        .role(Role.valueOf(userInfoDto.role().name()))
-                        .build())
-                .age(userInfoDto.age())
+    public static Account getAccountTransient_Munir() {
+        AccountDto accountDto = getAccountDto_Munir();
+        return Account.builder()
+                .login(accountDto.login())
+                .password(accountDto.password())
+                .role(Role.ADMIN)
                 .build();
     }
 
-    public static User getUserPersistent_Munir() {
-        User user = getUser_Munir();
-            user.setUserId(UUID.randomUUID());
-        return user;
+    public static Account getAccountPersistent_Munir() {
+        AccountDto accountDto = getAccountDto_Munir();
+        return Account.builder()
+                .accountId(UUID.randomUUID())
+                .login(accountDto.login())
+                .password(accountDto.password())
+                .role(Role.ADMIN)
+                .build();
+    }
+
+    public static AccountPersistentDto getAccountPersistentDto_Munir(UUID accountId) {
+        Account account = getAccountPersistent_Munir();
+        return new AccountPersistentDto(
+                accountId,
+                account.getLogin(),
+                account.getPassword(),
+                account.getRole().name()
+        );
     }
 }

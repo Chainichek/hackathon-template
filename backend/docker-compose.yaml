@@ -65,7 +65,7 @@ services:
     image: bitnami/kafka:latest
     depends_on:
       - kafka
-    entrypoint: [ "/bin/sh", "-c", "echo 'Waiting for Kafka to be ready...' && sleep 10 && kafka-topics.sh --create --topic activity-notification --bootstrap-server kafka:9093 --partitions 1 --replication-factor 1" ]
+    entrypoint: [ "/bin/sh", "-c", "echo 'Waiting for Kafka to be ready...' && sleep 10 && kafka-topics.sh --create --topic activity-notification --bootstrap-server kafka:9093 --partitions 1 --replication-factor 1  && kafka-topics.sh --create --topic create-employee --bootstrap-server kafka:9093 --partitions 1 --replication-factor 1" ]
     networks:
       - kafka-network
 networks:

@@ -5,7 +5,7 @@
 ## Особенности
 Сваггер открывается по эндпоинту /api/swagger-ui/index.html
 
-User релизован [так](src/main/java/com/munsun/auth_service/models).
+!!! В AccountPersistentDto добавил поле Role !!!
 В JWT вкладывается [такая нагрузка](src/main/java/com/munsun/auth_service/services/impl/providers/impl/DefaultJwtProvider.java)
 
 ## Запуск
