@@ -18,8 +18,10 @@ spring:
       key-serializer: org.apache.kafka.common.serialization.StringSerializer
       value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
       properties:
-        spring.json.value.default.type: ru.chainichek.hackathon.template.activity.dto.notification.NotificationMessage
-        spring.json.type.mapping: ActivityNotificationMessage:ru.chainichek.hackathon.template.activity.dto.notification.NotificationMessage
+        spring.json.value.default.type: ru.babim.template.activity.dto.notification.NotificationMessage
+        spring.json.type.mapping: ActivityNotificationMessage:ru.babim.template.activity.dto.notification.NotificationMessage
+  autoconfigure:
+    exclude: org.springframework.boot.autoconfigure.security.servlet.UserDetailsServiceAutoConfiguration
 springdoc:
   swagger-ui:
     path: /swagger-docs
@@ -43,3 +45,11 @@ app:
 server:
   servlet:
     context-path: /api
+babim-lib:
+  jwt-filter:
+    enabled: true
+    secret-key:
+      key: 210d3d27605d0ee737952294265400a7cba109746afacd84b9cb0139bf6b7e3a
+      autoconfigure-bean: true
+  logger:
+    enabled: true
