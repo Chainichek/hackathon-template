@@ -22,6 +22,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import ru.babim.lib.logger.annotation.ControllerLoggable;
 import ru.babim.template.activity.dto.activity.ActivityDto;
 import ru.babim.template.activity.dto.activity.ActivityRegistrationRequestDto;
 import ru.babim.template.activity.dto.util.ErrorMessage;
@@ -37,6 +38,7 @@ import java.util.UUID;
         description = """
                 Contains operations for CRUD methods and for getting a list of employee activities. Also can remind about upcoming activities.
                 """)
+@ControllerLoggable
 public interface ActivityApi {
     @Operation(
             summary = "Searching for an activity",

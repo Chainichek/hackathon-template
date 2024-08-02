@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import ru.babim.lib.logger.annotation.ControllerLoggable;
 import ru.babim.template.activity.dto.util.ErrorMessage;
 import ru.babim.template.activity.dto.util.InternalErrorMessage;
 
@@ -29,6 +30,7 @@ import java.util.UUID;
         description = """
                 Contains operations for adding an activity for an employee or group and approving presence at the activity.
                 """)
+@ControllerLoggable
 public interface InvitationApi {
     @Operation(
             summary = "Inviting employees for an activity",

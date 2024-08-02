@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import ru.babim.lib.logger.annotation.ControllerLoggable;
 import ru.babim.template.activity.dto.admin.ActivityDto;
 import ru.babim.template.activity.dto.util.ErrorMessage;
 import ru.babim.template.activity.dto.util.InternalErrorMessage;
@@ -28,6 +29,7 @@ import java.util.UUID;
         description = """
                 Contains operations for administrating activities.
                 """)
+@ControllerLoggable
 public interface AdminApi {
     @Operation(
             summary = "Searching for an activity",
