@@ -32,21 +32,16 @@
 		<spring-cloud.version>2023.0.3</spring-cloud.version>
 		<!--Dev-->
 		<springdoc.version>2.0.4</springdoc.version>
-		<babim-lib.starter.version>1.0.0-SNAPSHOT</babim-lib.starter.version>
+		<!--JWT-->
+		<io.jsonwebtoken.version>0.12.6</io.jsonwebtoken.version>
 	</properties>
 	<dependencies>
-		<!--Lib-->
-		<dependency>
-			<groupId>ru.babim.lib</groupId>
-			<artifactId>babim-lib-spring-boot-starter</artifactId>
-			<version>${babim-lib.starter.version}</version>
-		</dependency>
 		<!--Spring Boot-->
 		<!--Security-->
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-security</artifactId>
-		</dependency>
+<!--		<dependency>-->
+<!--			<groupId>org.springframework.boot</groupId>-->
+<!--			<artifactId>spring-boot-starter-security</artifactId>-->
+<!--		</dependency>-->
 		<!--Spring Cloud-->
 		<!--API Gateway-->
 		<dependency>
@@ -58,6 +53,17 @@
 			<groupId>org.springframework.cloud</groupId>
 			<artifactId>spring-cloud-starter-circuitbreaker-reactor-resilience4j</artifactId>
 		</dependency>
+		<!--Service Discovery-->
+		<!--Eureka-->
+		<dependency>
+			<groupId>org.springframework.cloud</groupId>
+			<artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>
+		</dependency>
+		<!--Kubernetes-->
+		<dependency>
+			<groupId>org.springframework.cloud</groupId>
+			<artifactId>spring-cloud-starter-kubernetes-discoveryclient</artifactId>
+		</dependency>
 
 		<!--Dev-->
 		<!--DevTools-->
@@ -67,10 +73,35 @@
 			<scope>runtime</scope>
 			<optional>true</optional>
 		</dependency>
+		<!--Lombok-->
 		<dependency>
 			<groupId>org.projectlombok</groupId>
 			<artifactId>lombok</artifactId>
 			<optional>true</optional>
+		</dependency>
+		<!--Swagger and OpenAPI WebFlux-->
+		<dependency>
+			<groupId>org.springdoc</groupId>
+			<artifactId>springdoc-openapi-starter-webflux-ui</artifactId>
+			<version>${springdoc.version}</version>
+		</dependency>
+		<!--JWT-->
+		<dependency>
+			<groupId>io.jsonwebtoken</groupId>
+			<artifactId>jjwt-api</artifactId>
+			<version>${io.jsonwebtoken.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>io.jsonwebtoken</groupId>
+			<artifactId>jjwt-impl</artifactId>
+			<version>${io.jsonwebtoken.version}</version>
+			<scope>runtime</scope>
+		</dependency>
+		<dependency>
+			<groupId>io.jsonwebtoken</groupId>
+			<artifactId>jjwt-jackson</artifactId>
+			<version>${io.jsonwebtoken.version}</version>
+			<scope>runtime</scope>
 		</dependency>
 		<!--Ops-->
 		<!--Spring actuator-->
