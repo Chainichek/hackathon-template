@@ -10,10 +10,10 @@ import org.springframework.security.config.annotation.web.configurers.AbstractHt
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
-import ru.babim.lib.jwtprovider.filter.JwtFilter;
-import ru.babim.lib.jwtprovider.provider.JwtClaimsProvider;
-import ru.babim.lib.jwtprovider.provider.JwtProvider;
-import ru.babim.lib.jwtprovider.util.ErrorSender;
+import ru.babim.lib.jwtfilter.filter.JwtFilter;
+import ru.babim.lib.jwtfilter.provider.JwtClaimsProvider;
+import ru.babim.lib.jwtfilter.provider.JwtProvider;
+import ru.babim.lib.jwtfilter.util.ErrorSender;
 import ru.babim.template.activity.security.Role;
 
 import javax.crypto.SecretKey;
