@@ -1,4 +1,4 @@
-package ru.babim.lib.jwtprovider.util;
+package ru.babim.lib.jwtfilter.util;
 
 import java.time.LocalDateTime;
 

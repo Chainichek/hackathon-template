@@ -8,9 +8,9 @@
     </parent>
 
     <groupId>ru.babim.lib</groupId>
-    <artifactId>jwt-provider</artifactId>
+    <artifactId>jwt-filter</artifactId>
     <version>1.0.0-SNAPSHOT</version>
-    <name>jwt-provider</name>
+    <name>jwt-filter</name>
     <description>template for hackathon</description>
     <url/>
     <licenses>

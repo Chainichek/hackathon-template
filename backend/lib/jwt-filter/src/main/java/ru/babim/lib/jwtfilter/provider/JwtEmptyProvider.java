@@ -1,4 +1,4 @@
-package ru.babim.lib.jwtprovider.provider;
+package ru.babim.lib.jwtfilter.provider;
 
 import org.springframework.security.authentication.AbstractAuthenticationToken;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;

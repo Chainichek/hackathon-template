@@ -1,4 +1,4 @@
-package ru.babim.lib.jwtprovider.util;
+package ru.babim.lib.jwtfilter.util;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import jakarta.servlet.http.HttpServletRequest;
@@ -8,7 +8,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.security.authentication.BadCredentialsException;
-import ru.babim.lib.jwtprovider.exception.UnauthorizedException;
+import ru.babim.lib.jwtfilter.exception.UnauthorizedException;
 
 import java.io.IOException;
 import java.time.LocalDateTime;

@@ -13,11 +13,11 @@ import org.springframework.boot.context.properties.EnableConfigurationProperties
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import ru.babim.lib.babimlibspringbootstarter.properties.JwtFilterProperties;
-import ru.babim.lib.jwtprovider.filter.JwtFilter;
-import ru.babim.lib.jwtprovider.provider.JwtEmptyProvider;
-import ru.babim.lib.jwtprovider.provider.JwtProvider;
-import ru.babim.lib.jwtprovider.util.DefaultErrorSender;
-import ru.babim.lib.jwtprovider.util.ErrorSender;
+import ru.babim.lib.jwtfilter.filter.JwtFilter;
+import ru.babim.lib.jwtfilter.provider.JwtEmptyProvider;
+import ru.babim.lib.jwtfilter.provider.JwtProvider;
+import ru.babim.lib.jwtfilter.util.DefaultErrorSender;
+import ru.babim.lib.jwtfilter.util.ErrorSender;
 
 import javax.crypto.SecretKey;
 

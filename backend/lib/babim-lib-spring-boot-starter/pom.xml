@@ -39,8 +39,8 @@
 
 		<dependency>
 			<groupId>ru.babim.lib</groupId>
-			<artifactId>jwt-provider</artifactId>
-			<version>${babim-lib.jwt-provider.version}</version>
+			<artifactId>jwt-filter</artifactId>
+			<version>${babim-lib.jwt-filter.version}</version>
 			<scope>compile</scope>
 		</dependency>
 		<!--Spring Boot-->

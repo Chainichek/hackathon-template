@@ -1,4 +1,4 @@
-package ru.babim.lib.jwtprovider.provider;
+package ru.babim.lib.jwtfilter.provider;
 
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.JwtException;

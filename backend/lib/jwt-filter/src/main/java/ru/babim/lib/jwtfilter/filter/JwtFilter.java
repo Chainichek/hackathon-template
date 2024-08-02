@@ -1,4 +1,4 @@
-package ru.babim.lib.jwtprovider.filter;
+package ru.babim.lib.jwtfilter.filter;
 
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
@@ -11,9 +11,9 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.util.StringUtils;
 import org.springframework.web.filter.OncePerRequestFilter;
-import ru.babim.lib.jwtprovider.exception.UnauthorizedException;
-import ru.babim.lib.jwtprovider.provider.JwtProvider;
-import ru.babim.lib.jwtprovider.util.ErrorSender;
+import ru.babim.lib.jwtfilter.exception.UnauthorizedException;
+import ru.babim.lib.jwtfilter.provider.JwtProvider;
+import ru.babim.lib.jwtfilter.util.ErrorSender;
 
 import java.io.IOException;
 import java.util.List;

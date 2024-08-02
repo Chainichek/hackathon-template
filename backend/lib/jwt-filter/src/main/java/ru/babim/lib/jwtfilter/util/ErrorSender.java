@@ -1,9 +1,9 @@
-package ru.babim.lib.jwtprovider.util;
+package ru.babim.lib.jwtfilter.util;
 
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.security.authentication.BadCredentialsException;
-import ru.babim.lib.jwtprovider.exception.UnauthorizedException;
+import ru.babim.lib.jwtfilter.exception.UnauthorizedException;
 
 import java.io.IOException;
 
