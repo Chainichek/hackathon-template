@@ -34,7 +34,6 @@ app:
     context-path: /v1
   client:
     employee:
-      url: ${EMPLOYEE_SERVICE_HOST:employee:8080}
       path:
         base-path: /api/v1
         find-employee: /employees
