@@ -25,3 +25,4 @@ minikube version
 kubectl version --client
 
 echo "Minikube installation complete!"
+echo "check commit"
