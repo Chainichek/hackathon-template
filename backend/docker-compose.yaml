@@ -1,6 +1,6 @@
 version: '3'
 services:
-  activity-service:
+  activity:
     build:
       context: ./activity
     ports:
@@ -10,13 +10,29 @@ services:
       SPRING_DATASOURCE_USERNAME: postgres
       SPRING_DATASOURCE_PASSWORD: postgres
       SPRING_KAFKA_BOOTSTRAP_SERVERS: kafka:9092
-      EMPLOYEE_SERVICE_HOST: localhost:8082
+      EUREKA_SERVICE_HOST: eureka:8761
+      SPRING_PROFILES_ACTIVE: dev
     depends_on:
       - postgres
       - kafka
+      - eureka
     networks:
       - kafka-network
       - postgres-network
+      - eureka-network
+
+  gateway:
+    build:
+      context: ./gateway
+    ports:
+      - "8080:8080"
+    environment:
+      EUREKA_SERVICE_HOST: eureka:8761
+      SPRING_PROFILES_ACTIVE: dev
+    depends_on:
+      - eureka
+    networks:
+      - eureka-network
 
   postgres:
     image: postgres:16-alpine
@@ -68,10 +84,21 @@ services:
     entrypoint: [ "/bin/sh", "-c", "echo 'Waiting for Kafka to be ready...' && sleep 10 && kafka-topics.sh --create --topic activity-notification --bootstrap-server kafka:9093 --partitions 1 --replication-factor 1  && kafka-topics.sh --create --topic create-employee --bootstrap-server kafka:9093 --partitions 1 --replication-factor 1" ]
     networks:
       - kafka-network
+
+  eureka:
+    build:
+      context: ./discovery
+    ports:
+      - "8761:8761"
+    networks:
+      - eureka-network
+
 networks:
   kafka-network:
     driver: bridge
   postgres-network:
+    driver: bridge
+  eureka-network:
     driver: bridge
 volumes:
   postgres_data:

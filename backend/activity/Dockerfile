@@ -1,9 +1,9 @@
 
-FROM bellsoft/liberica-openjre-alpine:17.0.9
+FROM bellsoft/liberica-openjre-alpine:21.0.1-12
 
 WORKDIR /app
 
-COPY --from=build /target/activity.jar ./activity.jar
+COPY ./target/activity.jar ./activity.jar
 
 EXPOSE 8080
 
