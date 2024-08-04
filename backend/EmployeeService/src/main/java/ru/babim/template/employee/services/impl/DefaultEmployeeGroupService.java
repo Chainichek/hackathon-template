@@ -30,6 +30,7 @@ public class DefaultEmployeeGroupService implements EmployeeGroupService {
         return employeeGroupMapper.map(group);
     }
 
+    @PreAuthorize("hasAnyRole('ADMIN', 'RECRUITER')")
     @Override
     public EmployeeGroupDto createGroupEmployee(String title, String description) {
         EmployeeGroup emptyGroup = EmployeeGroup.builder()
@@ -40,6 +41,7 @@ public class DefaultEmployeeGroupService implements EmployeeGroupService {
         return employeeGroupMapper.map(emptyGroup);
     }
 
+    @PreAuthorize("hasAnyRole('ADMIN')")
     @Override
     public void removeGroup(UUID groupId) {
         EmployeeGroup group = employeeGroupRepository.findById(groupId)
@@ -48,6 +50,7 @@ public class DefaultEmployeeGroupService implements EmployeeGroupService {
         employeeGroupRepository.save(group);
     }
 
+    @PreAuthorize("hasAnyRole('ADMIN', 'RECRUITER', 'EXPERT')")
     @Override
     public EmployeeGroupDto addEmployee(UUID groupId, String login) {
         EmployeeGroup group = employeeGroupRepository.findById(groupId)
