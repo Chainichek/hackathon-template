@@ -12,19 +12,32 @@ spring:
     url: jdbc:postgresql://localhost:9999/test_db1
     driver-class-name: org.postgresql.Driver
   kafka:
-    bootstrap-servers: localhost:9092
     producer:
+      bootstrap-servers: localhost:9092
       key-serializer: org.apache.kafka.common.serialization.StringSerializer
       value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
+
+springdoc:
+  swagger-ui:
+    path: /swagger-docs
 
 kafka:
   topics:
     create_employee: create-employee
 
 client:
-  auth_service:
+  auth:
     url: http://localhost:8081
 
 server:
   servlet:
     context-path: /api
+
+babim-lib:
+  jwt-filter:
+    enabled: true
+    secret-key:
+      key: 210d3d27605d0ee737952294265400a7cba109746afacd84b9cb0139bf6b7e3a
+      autoconfigure-bean: true
+  logger:
+    enabled: true

@@ -1,6 +1,7 @@
 package com.munsun.employee_service.controllers;
 
 import com.munsun.employee_service.dto.response.EmployeeGroupDto;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import org.springframework.http.HttpStatus;
@@ -10,8 +11,9 @@ import org.springframework.web.bind.annotation.*;
 import java.util.UUID;
 
 @Validated
-@RequestMapping("/v1/groups")
-public interface EmployeeGroupController {
+@RequestMapping("${server.servlet.context-path}/v1/groups")
+@Tag(name="Groups controller")
+public interface EmployeeGroupApi {
     @GetMapping("/{groupsId}")
     EmployeeGroupDto getGroupEmployee(@PathVariable @NotNull UUID groupId);
 

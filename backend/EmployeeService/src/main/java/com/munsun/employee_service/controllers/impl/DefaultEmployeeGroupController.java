@@ -9,6 +9,7 @@ import java.util.UUID;
 
 @RestController
 @RequiredArgsConstructor
+@RequestMapping("/v1/employees")
 public class DefaultEmployeeGroupController implements EmployeeGroupService {
     private final EmployeeGroupService groupService;
 

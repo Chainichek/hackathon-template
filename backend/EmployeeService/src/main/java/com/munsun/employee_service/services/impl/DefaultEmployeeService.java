@@ -11,6 +11,7 @@ import com.munsun.employee_service.repositories.EmployeeRepository;
 import com.munsun.employee_service.services.EmployeeService;
 import com.munsun.employee_service.services.impl.clients.EmployeeFeignClient;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -20,6 +21,7 @@ public class DefaultEmployeeService implements EmployeeService {
     private final EmployeeMapper employeeMapper;
     private final EmployeeFeignClient feignClient;
     private final EmployeeProducer producer;
+
 
     @Override
     public void createEmployee(EmployeeInfoDto employeeInfoDto) {
@@ -32,6 +34,7 @@ public class DefaultEmployeeService implements EmployeeService {
     }
 
     @Override
+    @PreAuthorize("hasAnyRole('ADMIN')")
     public void removeEmployee(String login) {
         Employee employee = employeeRepository.findByLogin(login)
                 .orElseThrow(() -> new EmployeeNotFoundException(String.format("Employee with id=%s not found", login)));
@@ -40,6 +43,7 @@ public class DefaultEmployeeService implements EmployeeService {
     }
 
     @Override
+    @PreAuthorize("hasAnyRole('ADMIN', 'RECRUITER')")
     public void changeEmployee(String login, EmployeeInfoDto newEmployeeInfo) {
         Employee employee = employeeRepository.findByLogin(login)
                 .orElseThrow(() -> new EmployeeNotFoundException(String.format("Employee with id=%s not found", login)));
@@ -50,6 +54,7 @@ public class DefaultEmployeeService implements EmployeeService {
     }
 
     @Override
+    @PreAuthorize("hasAnyRole('ADMIN', 'RECRUITER', 'EXPERT')")
     public EmployeeInfoDto getEmployee(String login) {
         Employee employee = employeeRepository.findByLogin(login)
                 .orElseThrow(() -> new EmployeeNotFoundException(String.format("Employee with id=%s not found", login)));

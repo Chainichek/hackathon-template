@@ -14,7 +14,7 @@ spring:
 
 security:
   token:
-    secret: secret
+    secret: 210d3d27605d0ee737952294265400a7cba109746afacd84b9cb0139bf6b7e3a
     expire: 10000000
 
 server:
