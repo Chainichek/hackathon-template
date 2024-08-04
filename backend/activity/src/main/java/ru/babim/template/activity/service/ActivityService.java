@@ -41,8 +41,10 @@ public class ActivityService {
                                             ActivityStatus status,
                                             LocalDateTime startAt,
                                             LocalDateTime endAt) {
-        if (startAt.isAfter(endAt)) {
-            throw new IllegalArgumentException(ExceptionMessage.ILLEGAL_DATE_RANGE_EXCEPTION_MESSAGE.formatted(startAt, endAt));
+        if (startAt != null && endAt != null) {
+            if (startAt.isAfter(endAt)) {
+                throw new IllegalArgumentException(ExceptionMessage.ILLEGAL_DATE_RANGE_EXCEPTION_MESSAGE.formatted(startAt, endAt));
+            }
         }
 
         return activityRepo.findByEmployeeLoginAndStatusAndDateRange(login, status, startAt, endAt)
