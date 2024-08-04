@@ -6,5 +6,5 @@ public record NotificationMessage(String address,
                                   String login,
                                   String name,
                                   String lastname,
-                                  UUID activityId) {
+                                  UUID resourceId) {
 }
