@@ -26,8 +26,6 @@
         <url/>
     </scm>
     <properties>
-        <!--Compiler-->
-        <java.version>${java.version}</java.version>
         <!--JWT-->
         <io.jsonwebtoken.version>0.12.6</io.jsonwebtoken.version>
     </properties>
