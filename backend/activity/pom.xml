@@ -29,6 +29,7 @@
     <properties>
         <!--Compiler-->
         <java.version>17</java.version>
+        <org.apache.maven.plugins.maven-compiler-plugin.version>3.11.0</org.apache.maven.plugins.maven-compiler-plugin.version>
         <!--Cloud-->
         <spring-cloud.version>2023.0.3</spring-cloud.version>
         <!--Database-->
@@ -209,7 +210,7 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
-                <version>3.6.1</version>
+                <version>${org.apache.maven.plugins.maven-compiler-plugin.version}</version>
                 <configuration>
                     <source>${java.version}</source>
                     <target>${java.version}</target>

@@ -19,6 +19,12 @@ spring:
             - Path=/auth/api/**
           filters:
             - RewritePath=/auth/(?<path>.*), /$\{path}
+        - id: employee
+          uri: lb://employee
+          predicates:
+            - Path=/employee/api/**
+          filters:
+            - RewritePath=/employee/(?<path>.*), /$\{path}
 springdoc:
   swagger-ui:
     path: /swagger-docs
@@ -27,6 +33,8 @@ springdoc:
         name: Activity
       - url: /auth/api/docs
         name: Auth
+      - url: /employee/api/docs
+        name: Employee
 logging:
   level:
     org.springframework.cloud.gateway: DEBUG

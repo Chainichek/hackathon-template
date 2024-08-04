@@ -6,7 +6,7 @@ import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
-@FeignClient(value = "auth_service-mc", url = "${client.auth_service.url}")
+@FeignClient(value = "auth")
 public interface EmployeeFeignClient {
     @PostMapping("/api/v1/accounts/register")
     AccountPersistentDto getAccount(@RequestBody AccountDto accountDto);

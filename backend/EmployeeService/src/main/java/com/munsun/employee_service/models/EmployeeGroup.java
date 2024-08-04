@@ -11,7 +11,7 @@ import java.util.UUID;
 @Setter
 @Builder
 @Entity
-@Table(name = "groups", schema = "public")
+@Table(name = "groups", schema = "employee")
 @AllArgsConstructor
 @NoArgsConstructor
 @FieldNameConstants(asEnum = true)
@@ -30,6 +30,7 @@ public class EmployeeGroup {
     @ManyToMany
     @JoinTable(
             name = "groups_employees",
+            schema = "employee",
             joinColumns = { @JoinColumn(name = "employee_id") },
             inverseJoinColumns = { @JoinColumn(name = "group_id") }
     )

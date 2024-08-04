@@ -9,11 +9,32 @@ services:
       SPRING_DATASOURCE_URL: "jdbc:postgresql://postgres:5432/hackathon-template"
       SPRING_DATASOURCE_USERNAME: postgres
       SPRING_DATASOURCE_PASSWORD: postgres
+      EUREKA_SERVICE_HOST: eureka-service:8761
       SPRING_PROFILES_ACTIVE: dev
     depends_on:
       - postgres
       - eureka-service
     networks:
+      - postgres-network
+      - eureka-network
+  employee-service:
+    build:
+      context: ./EmployeeService
+    ports:
+      - "8082:8080"
+    environment:
+      SPRING_DATASOURCE_URL: "jdbc:postgresql://postgres:5432/hackathon-template"
+      SPRING_DATASOURCE_USERNAME: postgres
+      SPRING_DATASOURCE_PASSWORD: postgres
+      SPRING_KAFKA_BOOTSTRAP_SERVERS: kafka:9092
+      EUREKA_SERVICE_HOST: eureka-service:8761
+      SPRING_PROFILES_ACTIVE: dev
+    depends_on:
+      - postgres
+      - kafka
+      - eureka-service
+    networks:
+      - kafka-network
       - postgres-network
       - eureka-network
   activity-service:
@@ -26,7 +47,7 @@ services:
       SPRING_DATASOURCE_USERNAME: postgres
       SPRING_DATASOURCE_PASSWORD: postgres
       SPRING_KAFKA_BOOTSTRAP_SERVERS: kafka:9092
-      EUREKA_SERVICE_HOST: eureka:8761
+      EUREKA_SERVICE_HOST: eureka-service:8761
       SPRING_PROFILES_ACTIVE: dev
     depends_on:
       - postgres
@@ -51,7 +72,7 @@ services:
     ports:
       - "8080:8080"
     environment:
-      EUREKA_SERVICE_HOST: eureka:8761
+      EUREKA_SERVICE_HOST: eureka-service:8761
       SPRING_PROFILES_ACTIVE: dev
     depends_on:
       - eureka-service
@@ -114,6 +135,5 @@ networks:
   postgres-network:
     driver: bridge
   eureka-network:
-    driver: bridge
 volumes:
   postgres_data:
