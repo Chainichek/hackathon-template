@@ -6,4 +6,4 @@ COPY ./target/auth-service.jar ./auth-service.jar
 
 EXPOSE 8080
 
-ENTRYPOINT ["java", "-jar", "activity.jar"]
+ENTRYPOINT ["java", "-jar", "auth-service.jar"]
