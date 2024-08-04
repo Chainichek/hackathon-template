@@ -4,12 +4,7 @@ echo "Updating system..."
 sudo apt-get update
 sudo apt-get upgrade -y
 
-if ! command -v docker &> /dev/null; then
-  echo "Docker is not installed. Run docker.sh and retry."
-  exit 1
-fi
 
-echo "Docker CLI was found"
 echo "Installing microk8s..."
 sudo snap install microk8s --classic --channel=1.30
 
