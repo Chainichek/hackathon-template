@@ -1,6 +1,22 @@
 version: '3'
 services:
-  activity:
+  auth-service:
+    build:
+      context: ./AuthService
+    ports:
+      - "8081:8080"
+    environment:
+      SPRING_DATASOURCE_URL: "jdbc:postgresql://postgres:5432/hackathon-template"
+      SPRING_DATASOURCE_USERNAME: postgres
+      SPRING_DATASOURCE_PASSWORD: postgres
+      SPRING_PROFILES_ACTIVE: dev
+    depends_on:
+      - postgres
+      - eureka-service
+    networks:
+      - postgres-network
+      - eureka-network
+  activity-service:
     build:
       context: ./activity
     ports:
@@ -15,13 +31,21 @@ services:
     depends_on:
       - postgres
       - kafka
-      - eureka
+      - eureka-service
     networks:
       - kafka-network
       - postgres-network
       - eureka-network
 
-  gateway:
+  eureka-service:
+    build:
+      context: ./discovery
+    ports:
+      - "8761:8761"
+    networks:
+      - eureka-network
+
+  gateway-service:
     build:
       context: ./gateway
     ports:
@@ -30,7 +54,7 @@ services:
       EUREKA_SERVICE_HOST: eureka:8761
       SPRING_PROFILES_ACTIVE: dev
     depends_on:
-      - eureka
+      - eureka-service
     networks:
       - eureka-network
 
@@ -47,7 +71,6 @@ services:
       - postgres-network
     volumes:
       - postgres_data:/var/lib/postgresql/data
-
 
   zookeeper:
     image: bitnami/zookeeper:latest
@@ -84,14 +107,6 @@ services:
     entrypoint: [ "/bin/sh", "-c", "echo 'Waiting for Kafka to be ready...' && sleep 10 && kafka-topics.sh --create --topic activity-notification --bootstrap-server kafka:9093 --partitions 1 --replication-factor 1  && kafka-topics.sh --create --topic create-employee --bootstrap-server kafka:9093 --partitions 1 --replication-factor 1" ]
     networks:
       - kafka-network
-
-  eureka:
-    build:
-      context: ./discovery
-    ports:
-      - "8761:8761"
-    networks:
-      - eureka-network
 
 networks:
   kafka-network:

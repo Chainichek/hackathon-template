@@ -13,12 +13,20 @@ spring:
             - Path=/activity/api/**
           filters:
             - RewritePath=/activity/(?<path>.*), /$\{path}
+        - id: auth
+          uri: lb://auth
+          predicates:
+            - Path=/auth/api/**
+          filters:
+            - RewritePath=/auth/(?<path>.*), /$\{path}
 springdoc:
   swagger-ui:
     path: /swagger-docs
     urls:
       - url: /activity/api/docs
         name: Activity
+      - url: /auth/api/docs
+        name: Auth
 logging:
   level:
     org.springframework.cloud.gateway: DEBUG

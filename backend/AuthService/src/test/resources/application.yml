@@ -1,11 +1,11 @@
 spring:
   application:
-    name: AuthService
+    name: auth
   jpa:
     hibernate:
       ddl-auto: none
   liquibase:
-    change-log: classpath:db/changelog/db.changelog-main.xml
+    change-log: classpath:db/changelog/changelog.xml
 
 security:
   token:
