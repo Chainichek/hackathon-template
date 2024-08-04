@@ -29,6 +29,7 @@
     <properties>
         <!--Compiler-->
         <java.version>17</java.version>
+        <org.apache.maven.plugins.maven-compiler-plugin.version>3.11.0</org.apache.maven.plugins.maven-compiler-plugin.version>
         <!--Cloud-->
         <spring-cloud.version>2023.0.3</spring-cloud.version>
         <!--Database-->
@@ -73,6 +74,17 @@
         <dependency>
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter-openfeign</artifactId>
+        </dependency>
+        <!--Service Discovery-->
+        <!--Eureka-->
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>
+        </dependency>
+        <!--Kubernetes-->
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-kubernetes-discoveryclient</artifactId>
         </dependency>
 
         <!--Database-->
@@ -148,25 +160,25 @@
             <artifactId>spring-security-test</artifactId>
             <scope>test</scope>
         </dependency>
-<!--        &lt;!&ndash;TestContainers&ndash;&gt;-->
-<!--        &lt;!&ndash;Spring Boot&ndash;&gt;-->
-<!--        <dependency>-->
-<!--            <groupId>org.springframework.boot</groupId>-->
-<!--            <artifactId>spring-boot-testcontainers</artifactId>-->
-<!--            <scope>test</scope>-->
-<!--        </dependency>-->
-<!--        &lt;!&ndash;JUnit&ndash;&gt;-->
-<!--        <dependency>-->
-<!--            <groupId>org.testcontainers</groupId>-->
-<!--            <artifactId>junit-jupiter</artifactId>-->
-<!--            <scope>test</scope>-->
-<!--        </dependency>-->
-<!--        &lt;!&ndash;Postgres&ndash;&gt;-->
-<!--        <dependency>-->
-<!--            <groupId>org.testcontainers</groupId>-->
-<!--            <artifactId>postgresql</artifactId>-->
-<!--            <scope>test</scope>-->
-<!--        </dependency>-->
+        <!--TestContainers-->
+        <!--Spring Boot-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-testcontainers</artifactId>
+            <scope>test</scope>
+        </dependency>
+        <!--JUnit-->
+        <dependency>
+            <groupId>org.testcontainers</groupId>
+            <artifactId>junit-jupiter</artifactId>
+            <scope>test</scope>
+        </dependency>
+        <!--Postgres-->
+        <dependency>
+            <groupId>org.testcontainers</groupId>
+            <artifactId>postgresql</artifactId>
+            <scope>test</scope>
+        </dependency>
     </dependencies>
     <dependencyManagement>
         <dependencies>
@@ -198,7 +210,7 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
-                <version>3.6.1</version>
+                <version>${org.apache.maven.plugins.maven-compiler-plugin.version}</version>
                 <configuration>
                     <source>${java.version}</source>
                     <target>${java.version}</target>

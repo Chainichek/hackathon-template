@@ -12,7 +12,7 @@ import java.util.UUID;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name="accounts", schema = "public")
+@Table(name="accounts", schema = "auth")
 public class Account {
     @Id
     @Column(name="account_id")

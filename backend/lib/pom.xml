@@ -38,7 +38,7 @@
         <!--Lib version-->
         <babim-lib.babim-lib-spring-boot-starter.version>1.0.0-SNAPSHOT</babim-lib.babim-lib-spring-boot-starter.version>
         <babim-lib.logger.version>1.0.0-SNAPSHOT</babim-lib.logger.version>
-        <babim-lib.jwt-provider.version>1.0.0-SNAPSHOT</babim-lib.jwt-provider.version>
+        <babim-lib.jwt-filter.version>1.0.0-SNAPSHOT</babim-lib.jwt-filter.version>
     </properties>
 
     <dependencyManagement>
@@ -73,8 +73,8 @@
 
             <dependency>
                 <groupId>ru.babim.lib</groupId>
-                <artifactId>jwt-provider</artifactId>
-                <version>${babim-lib.jwt-provider.version}</version>
+                <artifactId>jwt-filter</artifactId>
+                <version>${babim-lib.jwt-filter.version}</version>
             </dependency>
         </dependencies>
     </dependencyManagement>

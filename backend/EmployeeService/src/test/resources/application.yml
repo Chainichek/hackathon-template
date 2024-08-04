@@ -1,14 +1,20 @@
 spring:
   application:
-    name: EmployeeService
+    name: employee
   jpa:
     hibernate:
       ddl-auto: create-drop
   liquibase:
-    change-log: db.changelog/v1.0/db.changelog-main.xml
+    change-log: db/changelog/changelog.xml
   datasource:
     driver-class-name: org.h2.Driver
+kafka:
+  topics:
+    create_employee: create-employee
 
 server:
   servlet:
     context-path: /api
+eureka:
+  client:
+    enabled: false

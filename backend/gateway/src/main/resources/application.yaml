@@ -1,0 +1,40 @@
+spring:
+  application:
+    name: gateway
+  cloud:
+    gateway:
+      discovery:
+        locator:
+          enabled: true
+      routes:
+        - id: activity
+          uri: lb://activity
+          predicates:
+            - Path=/activity/api/**
+          filters:
+            - RewritePath=/activity/(?<path>.*), /$\{path}
+        - id: auth
+          uri: lb://auth
+          predicates:
+            - Path=/auth/api/**
+          filters:
+            - RewritePath=/auth/(?<path>.*), /$\{path}
+        - id: employee
+          uri: lb://employee
+          predicates:
+            - Path=/employee/api/**
+          filters:
+            - RewritePath=/employee/(?<path>.*), /$\{path}
+springdoc:
+  swagger-ui:
+    path: /swagger-docs
+    urls:
+      - url: /activity/api/docs
+        name: Activity
+      - url: /auth/api/docs
+        name: Auth
+      - url: /employee/api/docs
+        name: Employee
+logging:
+  level:
+    org.springframework.cloud.gateway: DEBUG

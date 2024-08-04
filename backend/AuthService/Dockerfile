@@ -1,5 +1,9 @@
 FROM bellsoft/liberica-openjre-alpine:17.0.9
+
+WORKDIR /app
+
+COPY ./target/auth-service.jar ./auth-service.jar
+
 EXPOSE 8080
-WORKDIR /opt/app
-COPY ./target/AuthService-0.0.1-SNAPSHOT.jar ./service.jar
-CMD ["java", "-jar", "/opt/app/service.jar"]
+
+ENTRYPOINT ["java", "-jar", "auth-service.jar"]

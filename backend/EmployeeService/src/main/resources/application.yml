@@ -1,29 +1,29 @@
 spring:
   application:
-    name: EmployeeService
+    name: employee
   jpa:
     hibernate:
       ddl-auto: validate
   liquibase:
-    change-log: db.changelog/v1.0/db.changelog-main.xml
+    change-log: classpath:db/changelog/changelog.xml
   datasource:
     username: admin
     password: admin
     url: jdbc:postgresql://localhost:9999/test_db1
     driver-class-name: org.postgresql.Driver
   kafka:
-    bootstrap-servers: localhost:9092
+    bootstrap-servers: ${SPRING_KAFKA_BOOTSTRAP_SERVERS:localhost:9092}
     producer:
       key-serializer: org.apache.kafka.common.serialization.StringSerializer
       value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
-
+springdoc:
+  swagger-ui:
+    path: /swagger-docs
+  api-docs:
+    path: /docs
 kafka:
   topics:
     create_employee: create-employee
-
-client:
-  auth_service:
-    url: http://localhost:8081
 
 server:
   servlet:

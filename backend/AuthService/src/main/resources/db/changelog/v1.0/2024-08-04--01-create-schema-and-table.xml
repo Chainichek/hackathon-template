@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                      http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.27.xsd"
+        objectQuotingStrategy="QUOTE_ONLY_RESERVED_WORDS">
+    <changeSet id="1722767696418-1" author="daniyar">
+        <sql>
+            CREATE SCHEMA IF NOT EXISTS auth
+        </sql>
+        <rollback>
+            <sql>
+                DROP SCHEMA IF EXISTS auth
+            </sql>
+        </rollback>
+    </changeSet>
+    <changeSet id="1722767696418-2" author="daniyar">
+        <createTable schemaName="auth" tableName="accounts">
+            <column name="account_id" type="UUID">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="pk_accounts"/>
+            </column>
+            <column name="login" type="VARCHAR(255)"/>
+            <column name="password" type="VARCHAR(255)"/>
+            <column name="role" type="VARCHAR(255)"/>
+        </createTable>
+    </changeSet>
+
+</databaseChangeLog>

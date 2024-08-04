@@ -11,7 +11,7 @@ import java.util.UUID;
 @Setter
 @Builder
 @Entity
-@Table(name = "employees", schema = "public")
+@Table(name = "employees", schema = "employee")
 @AllArgsConstructor
 @NoArgsConstructor
 @FieldNameConstants(asEnum = true)

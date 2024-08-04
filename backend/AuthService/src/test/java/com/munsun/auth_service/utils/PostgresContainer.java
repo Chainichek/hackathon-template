@@ -10,7 +10,7 @@ import org.testcontainers.junit.jupiter.Container;
 public class PostgresContainer {
     @Container
     public static PostgreSQLContainer<?> container
-            = new PostgreSQLContainer<>("postgres")
+            = new PostgreSQLContainer<>("postgres:16-alpine")
             .withUsername("root")
             .withPassword("root")
             .withReuse(true);

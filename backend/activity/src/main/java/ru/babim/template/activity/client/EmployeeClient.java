@@ -12,7 +12,6 @@ import ru.babim.template.activity.dto.employee.GroupDto;
 import java.util.UUID;
 
 @FeignClient(name = "employee",
-        url = "${app.client.employee.url}",
         path = "${app.client.employee.path.base-path}",
         configuration = FeignConfig.class)
 public interface EmployeeClient {
