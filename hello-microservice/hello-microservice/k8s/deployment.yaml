@@ -1,0 +1,28 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: hello-microservice
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: hello-microservice
+  template:
+    metadata:
+      name: hello-microservice
+      labels:
+        app: hello-microservice
+    spec:
+      containers:
+        - name: hello-microservice
+          image: hello-microservice:latest
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 8080
+          env:
+            - name: SPRING_CLOUD_KUBERNETES_DISCOVERY_DISCOVERY_SERVER_URL
+              valueFrom:
+                configMapKeyRef:
+                  name: hello-microservice
+                  key: SPRING_CLOUD_KUBERNETES_DISCOVERY_DISCOVERY_SERVER_URL
+      restartPolicy: Always

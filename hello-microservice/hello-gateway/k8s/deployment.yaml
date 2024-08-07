@@ -1,0 +1,28 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: hello-gateway
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: hello-gateway
+  template:
+    metadata:
+      name: hello-gateway
+      labels:
+        app: hello-gateway
+    spec:
+      containers:
+        - name: hello-gateway
+          image: hello-gateway:latest
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 8080
+          env:
+            - name: SPRING_CLOUD_KUBERNETES_DISCOVERY_DISCOVERY_SERVER_URL
+              valueFrom:
+                configMapKeyRef:
+                  name: hello-gateway
+                  key: SPRING_CLOUD_KUBERNETES_DISCOVERY_DISCOVERY_SERVER_URL
+      restartPolicy: Always

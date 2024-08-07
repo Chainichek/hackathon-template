@@ -1,0 +1,31 @@
+spring:
+  application:
+    name: hello-gateway
+  cloud:
+    kubernetes:
+      discovery:
+        enabled: true
+    gateway:
+      discovery:
+        locator:
+          enabled: true
+      routes:
+        - id: hello-microservice
+          uri: lb://hello-microservice
+          predicates:
+            - Path=/hello-microservice/api/**
+          filters:
+            - RewritePath=/hello-microservice/(?<path>.*), /$\{path}
+springdoc:
+  swagger-ui:
+    path: /swagger-docs
+    urls:
+      - url: /hello-microservice/api/docs
+        name: Hello Microservice
+management:
+  endpoints:
+    web:
+      exposure:
+        include:
+          - health
+          - info

@@ -1,0 +1,19 @@
+spring:
+  application:
+    name: hello-microservice
+  cloud:
+    kubernetes:
+      discovery:
+        enabled: true
+springdoc:
+  swagger-ui:
+    path: /swagger-docs
+app:
+  version: @project.version@
+management:
+  endpoints:
+    web:
+      exposure:
+        include:
+          - health
+          - info
