@@ -1,0 +1,32 @@
+spring:
+  application:
+    name: notification
+  mail:
+    host: ${SPRING_MAIL_HOST:smtp.gmail.com}
+    port: ${SPRING_MAIL_PORT:587}
+  kafka:
+    bootstrap-servers: ${SPRING_KAFKA_BOOTSTRAP_SERVERS:localhost:9092}
+
+    consumer:
+      group-id: notification-group
+      auto-offset-reset: earliest
+      key-deserializer: org.springframework.kafka.support.serializer.ErrorHandlingDeserializer
+      value-deserializer: org.springframework.kafka.support.serializer.ErrorHandlingDeserializer
+
+      properties:
+        spring.deserializer.key.delegate.class: org.apache.kafka.common.serialization.StringDeserializer
+        spring.deserializer.value.delegate.class: org.springframework.kafka.support.serializer.JsonDeserializer
+        spring.json.value.default.type: ru.babim.template.notification.dto.notification.NotificationMessage
+        spring.json.type.mapping: NotificationMessage:ru.babim.template.notification.dto.notification.NotificationMessage
+app:
+  default-locale: ${APP_DEFAULT_LOCALE:en}
+  kafka:
+    topic:
+      create-employee: create-employee
+      activity-notification: activity-notification
+    consumer:
+      back-off:
+        interval: 5000
+babim-lib:
+  logger:
+    enabled: true
