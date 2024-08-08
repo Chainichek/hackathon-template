@@ -19,7 +19,7 @@ spec:
       serviceAccountName: hello-gateway
       containers:
         - name: hello-gateway
-          image: hello-gateway:latest
+          image: chainichek/hello-gateway:latest
           imagePullPolicy: IfNotPresent
           ports:
             - containerPort: 8080

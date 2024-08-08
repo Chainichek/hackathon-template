@@ -19,7 +19,7 @@ spec:
       serviceAccountName: hello-microservice
       containers:
         - name: hello-microservice
-          image: hello-microservice:latest
+          image: chainichek/hello-microservice:latest
           imagePullPolicy: IfNotPresent
           ports:
             - containerPort: 8080
