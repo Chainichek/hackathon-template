@@ -2,5 +2,41 @@ apiVersion: v1
 kind: ConfigMap
 metadata:
   name: hello-gateway
+  labels:
+    name: hello-gateway
+    app: hello-gateway
 data:
-  SPRING_CLOUD_KUBERNETES_DISCOVERY_DISCOVERY_SERVER_URL: "http://spring-cloud-kubernetes-discoveryserver"
+  application.yaml: |-
+    spring:
+      application:
+        name: hello-gateway
+      cloud:
+        gateway:
+          discovery:
+            locator:
+              enabled: false
+          routes:
+            - id: hello-microservice
+              uri: lb://hello-microservice
+              predicates:
+                - Path=/hello-microservice/**
+              filters:
+                - RewritePath=/hello-microservice/(?<path>.*), /$\{path}
+                - AddRequestHeader=X-Forwarded-Prefix, /hello-microservice
+    springdoc:
+      swagger-ui:
+        path: /swagger-docs
+        urls:
+          - url: /hello-microservice/api-docs
+            name: Hello Microservice
+    management:
+      endpoints:
+        web:
+          exposure:
+            include:
+              - health
+              - info
+    logging:
+      level:
+        org.springframework.cloud.gateway: DEBUG
+        org.springframework.cloud.kubernetes: DEBUG

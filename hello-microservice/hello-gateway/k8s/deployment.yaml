@@ -2,6 +2,9 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: hello-gateway
+  labels:
+    name: hello-gateway
+    app: hello-gateway
 spec:
   replicas: 1
   selector:
@@ -13,16 +16,14 @@ spec:
       labels:
         app: hello-gateway
     spec:
+      serviceAccountName: hello-gateway
       containers:
         - name: hello-gateway
           image: hello-gateway:latest
           imagePullPolicy: IfNotPresent
           ports:
             - containerPort: 8080
-          env:
-            - name: SPRING_CLOUD_KUBERNETES_DISCOVERY_DISCOVERY_SERVER_URL
-              valueFrom:
-                configMapKeyRef:
-                  name: hello-gateway
-                  key: SPRING_CLOUD_KUBERNETES_DISCOVERY_DISCOVERY_SERVER_URL
+          args:
+            - "--spring.cloud.bootstrap.enabled=true"
+            - "--spring.cloud.kubernetes.config.name=hello-gateway"
       restartPolicy: Always

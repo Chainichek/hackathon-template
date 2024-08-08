@@ -2,6 +2,9 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: hello-microservice
+  labels:
+    name: hello-microservice
+    app: hello-microservice
 spec:
   replicas: 1
   selector:
@@ -13,16 +16,14 @@ spec:
       labels:
         app: hello-microservice
     spec:
+      serviceAccountName: hello-microservice
       containers:
         - name: hello-microservice
           image: hello-microservice:latest
           imagePullPolicy: IfNotPresent
           ports:
             - containerPort: 8080
-          env:
-            - name: SPRING_CLOUD_KUBERNETES_DISCOVERY_DISCOVERY_SERVER_URL
-              valueFrom:
-                configMapKeyRef:
-                  name: hello-microservice
-                  key: SPRING_CLOUD_KUBERNETES_DISCOVERY_DISCOVERY_SERVER_URL
+          args:
+            - "--spring.cloud.bootstrap.enabled=true"
+            - "--spring.cloud.kubernetes.config.name=hello-microservice"
       restartPolicy: Always

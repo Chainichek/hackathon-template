@@ -1,13 +1,11 @@
 spring:
   application:
     name: hello-microservice
-  cloud:
-    kubernetes:
-      discovery:
-        enabled: true
 springdoc:
   swagger-ui:
     path: /swagger-docs
+  api-docs:
+    path: /api-docs
 app:
   version: @project.version@
 management:

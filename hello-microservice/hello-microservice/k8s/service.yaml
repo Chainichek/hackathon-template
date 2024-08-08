@@ -2,11 +2,15 @@ apiVersion: v1
 kind: Service
 metadata:
   name: hello-microservice
+  labels:
+    name: hello-microservice
+    app: hello-microservice
 spec:
   selector:
     app: hello-microservice
   ports:
-    - port: 8080
+    - name: http
+      port: 80
       targetPort: 8080
-  type: LoadBalancer
+  type: ClusterIP
   

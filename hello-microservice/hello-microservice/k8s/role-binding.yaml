@@ -1,0 +1,13 @@
+apiVersion: rbac.authorization.k8s.io/v1
+kind: RoleBinding
+metadata:
+  labels:
+    app: hello-microservice
+  name: hello-microservice
+subjects:
+  - kind: ServiceAccount
+    name: hello-microservice
+roleRef:
+  kind: Role
+  apiGroup: rbac.authorization.k8s.io
+  name: hello-microservice

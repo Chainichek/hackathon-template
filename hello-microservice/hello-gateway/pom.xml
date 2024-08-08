@@ -45,13 +45,19 @@
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter-circuitbreaker-reactor-resilience4j</artifactId>
         </dependency>
-        <!--Service Discovery-->
         <!--Kubernetes-->
         <dependency>
             <groupId>org.springframework.cloud</groupId>
-            <artifactId>spring-cloud-starter-kubernetes-discoveryclient</artifactId>
+            <artifactId>spring-cloud-starter-kubernetes-fabric8-all</artifactId>
         </dependency>
-
+<!--        <dependency>-->
+<!--            <groupId>org.springframework.cloud</groupId>-->
+<!--            <artifactId>spring-cloud-starter-kubernetes-fabric8-config</artifactId>-->
+<!--        </dependency>-->
+<!--        <dependency>-->
+<!--            <groupId>org.springframework.cloud</groupId>-->
+<!--            <artifactId>spring-cloud-starter-kubernetes-fabric8</artifactId>-->
+<!--        </dependency>-->
         <!--Dev-->
         <!--DevTools-->
         <dependency>
